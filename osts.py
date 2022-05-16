@@ -7,7 +7,7 @@ pygame.font.init()
 
 
 pygame.mixer.music.load('ost/Nightcall.ogg')
-pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.set_volume(0.0)
 pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
 
 MAIN_MENU_SELECT_SONUD = pygame.mixer.Sound('ost/sfx_menu_select.wav')

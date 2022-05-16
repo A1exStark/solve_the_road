@@ -12,9 +12,9 @@ def draw_all():
     WIN.blit(BG, POS_BG)
     WIN.blit(MOUNTAINS, POS_MOUNTAINS)
     WIN.blit(FOREST, POS_FOREST)
-    # WIN.blit(ROAD, (i+speed*acceleration, 0))
-    # WIN.blit(ROAD, (WIDTH+i+speed*acceleration, 0))
-    WIN.blit(ROAD, POS_ROAD)
+    WIN.blit(ROAD, (i, 0))
+    WIN.blit(ROAD, (WIDTH+i, 0))
+    # WIN.blit(ROAD, POS_ROAD)
     WIN.blit(TASK, POS_TASK)
     WIN.blit(TASK_1, POS_TASK_1)
     WIN.blit(HEART, POS_HEART)
@@ -44,6 +44,12 @@ while run:
             if event.key == pygame.K_LEFT:
                 acceleration -= 0.5
             
+    if i <= -WIDTH:
+        WIN.blit(ROAD, (i+WIDTH, 0))
+        i = 0
+    i -= speed
+
+
     if ROAD_LANES == 0:
         WIN.blit(CAR, POS_CAR_0)
         # print(ROAD_LANES)
@@ -64,7 +70,7 @@ while run:
         if random.randint(0, 1) == 0:
             POS_TUNNEL_0.center = (WIDTH+20)*acceleration, HEIGHT//100*46
         else:
-            POS_TUNNEL_0.center = (WIDTH+20)*acceleration, HEIGHT//100*46
+            POS_TUNNEL_0.center = (WIDTH-20)*acceleration, HEIGHT//100*46
     
     POS_TUNNEL_1[0] -= speed*acceleration
     if POS_TUNNEL_1[0] < -WIDTH:
@@ -72,7 +78,7 @@ while run:
         if random.randint(0, 1) == 0:
             POS_TUNNEL_1.center = (WIDTH+20)*acceleration, HEIGHT//100*66
         else:
-            POS_TUNNEL_1.center = (WIDTH+20)*acceleration, HEIGHT//100*66
+            POS_TUNNEL_1.center = (WIDTH-20)*acceleration, HEIGHT//100*66
 
     POS_TUNNEL_2[0] -= speed*acceleration
     if POS_TUNNEL_2[0] < -WIDTH:
@@ -80,16 +86,13 @@ while run:
         if random.randint(0, 1) == 0:
             POS_TUNNEL_2.center = (WIDTH+20)*acceleration, HEIGHT//100*88
         else:
-            POS_TUNNEL_2.center = (WIDTH+20)*acceleration, HEIGHT//100*88
+            POS_TUNNEL_2.center = (WIDTH-20)*acceleration, HEIGHT//100*88
 
-    POS_ROAD[0] -= speed*acceleration
-    if POS_ROAD[0] < 0:
-        POS_ROAD.center = (WIDTH+20)*acceleration, HEIGHT//2
+    # POS_ROAD[0] -= speed*acceleration
+    # if POS_ROAD[0] < -WIDTH:
+    #     POS_ROAD.center = WIDTH, HEIGHT//2
             
-    # if i == -WIDTH:
-    #     WIN.blit(ROAD, (WIDTH+speed*acceleration, 0))
-    #     i = 0
-    # i -= speed*acceleration
+    
 
     pygame.display.update()
 

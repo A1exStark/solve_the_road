@@ -83,12 +83,12 @@ POS_MOUNTAINS = MOUNTAINS.get_rect(center=(WIDTH//2, HEIGHT//2))
 FOREST = pygame.image.load('img/lvl1/forest.png').convert_alpha()
 POS_FOREST = FOREST.get_rect(center=(WIDTH//2, HEIGHT//2))
 
-# ROAD = pygame.image.load('img/lvl1/road.png').convert_alpha()
+ROAD = pygame.image.load('img/lvl1/road.png').convert_alpha()
 # POS_ROAD = ROAD.get_rect(center=(WIDTH//2, HEIGHT//2))
 
-ROAD = pygame.image.load('img/lvl1/road.png').convert_alpha()
-POS_ROAD = ROAD.get_rect()
-POS_ROAD.center = WIDTH//2, HEIGHT//2
+# ROAD = pygame.image.load('img/lvl1/road.png').convert_alpha()
+# POS_ROAD = ROAD.get_rect()
+# POS_ROAD.center = WIDTH//2, HEIGHT//2
 
 CAR = pygame.image.load('img/lvl1/car.png').convert_alpha()
 POS_CAR_0 = CAR.get_rect(center=(WIDTH//100*20, HEIGHT//100*50))
@@ -108,7 +108,7 @@ POS_SCORE = SCORE.get_rect(center=(WIDTH//100*92, HEIGHT//100*99+30))
 PAUSE = pygame.image.load('img/lvl1/pause.png').convert_alpha()
 POS_PAUSE = PAUSE.get_rect(center=(WIDTH//100*92, HEIGHT//100*6))
 
-speed = 2
+speed = 5
 acceleration = 1.0
 
 TASK_1 = FONT.render('30+30', 0, WHITE)
