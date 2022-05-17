@@ -115,9 +115,9 @@ acceleration = 1.0
 
 TUNNEL = pygame.image.load('img/lvl1/tunnel.png').convert_alpha()
 POS_TUNNEL_0 = TUNNEL.get_rect()
-POS_TUNNEL_0.center = WIDTH//100*87, HEIGHT//100*46
+POS_TUNNEL_0.center = WIDTH//100*127, HEIGHT//100*46
 POS_TUNNEL_1 = TUNNEL.get_rect()
-POS_TUNNEL_1.center = WIDTH//100*82, HEIGHT//100*66
+POS_TUNNEL_1.center = WIDTH//100*122, HEIGHT//100*66
 POS_TUNNEL_2 = TUNNEL.get_rect()
-POS_TUNNEL_2.center = WIDTH//100*86, HEIGHT//100*88
+POS_TUNNEL_2.center = WIDTH//100*126, HEIGHT//100*88
 

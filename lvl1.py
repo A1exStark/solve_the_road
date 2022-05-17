@@ -11,8 +11,6 @@ clock = pygame.time.Clock()
 i = 0
 
 all_exercises = []
-
-
 for exercise in range(10):
     first_sum = random.randint(0, 90)
     second_sum = random.randint(0, 100-first_sum-1)
@@ -47,8 +45,6 @@ pressed = pygame.key.get_pressed()
 while run:
     current_time = pygame.time.get_ticks()
 
-    
-
     draw_all()
     for event in pygame.event.get():
         if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
@@ -69,6 +65,24 @@ while run:
         TASK_1 = FONT.render(f'{all_exercises[0][0]}+{all_exercises[0][1]}', 0, WHITE)
         POS_TASK_1 = TASK_1.get_rect(center=(WIDTH//2, HEIGHT//100*8))
         WIN.blit(TASK_1, POS_TASK_1)
+
+        POS_TUNNEL_0[0] -= speed*acceleration
+        # if random.randint(0, 1) == 0:
+        #     POS_TUNNEL_0.center = (WIDTH+10)*acceleration, HEIGHT//100*46
+        # else:
+        #     POS_TUNNEL_0.center = (WIDTH-10)*acceleration, HEIGHT//100*46
+
+        POS_TUNNEL_1[0] -= speed*acceleration
+        # if random.randint(0, 1) == 0:
+        #     POS_TUNNEL_1.center = (WIDTH+10)*acceleration, HEIGHT//100*66
+        # else:
+        #     POS_TUNNEL_1.center = (WIDTH-10)*acceleration, HEIGHT//100*66
+
+        POS_TUNNEL_2[0] -= speed*acceleration
+        # if random.randint(0, 1) == 0:
+        #     POS_TUNNEL_2.center = (WIDTH+10)*acceleration, HEIGHT//100*88
+        # else:
+        #     POS_TUNNEL_2.center = (WIDTH-10)*acceleration, HEIGHT//100*88
 
     if 10000 < current_time < 15000:
         TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)
@@ -96,29 +110,7 @@ while run:
     elif ROAD_LANES < 0:
         ROAD_LANES = 0
         
-    POS_TUNNEL_0[0] -= speed*acceleration
-    if POS_TUNNEL_0[0] < -WIDTH:
-        # randomly select lane
-        if random.randint(0, 1) == 0:
-            POS_TUNNEL_0.center = (WIDTH+10)*acceleration, HEIGHT//100*46
-        else:
-            POS_TUNNEL_0.center = (WIDTH-10)*acceleration, HEIGHT//100*46
     
-    POS_TUNNEL_1[0] -= speed*acceleration
-    if POS_TUNNEL_1[0] < -WIDTH:
-        # randomly select lane
-        if random.randint(0, 1) == 0:
-            POS_TUNNEL_1.center = (WIDTH+10)*acceleration, HEIGHT//100*66
-        else:
-            POS_TUNNEL_1.center = (WIDTH-10)*acceleration, HEIGHT//100*66
-
-    POS_TUNNEL_2[0] -= speed*acceleration
-    if POS_TUNNEL_2[0] < -WIDTH:
-        # randomly select lane
-        if random.randint(0, 1) == 0:
-            POS_TUNNEL_2.center = (WIDTH+10)*acceleration, HEIGHT//100*88
-        else:
-            POS_TUNNEL_2.center = (WIDTH-10)*acceleration, HEIGHT//100*88
 
     # POS_ROAD[0] -= speed*acceleration
     # if POS_ROAD[0] < -WIDTH:
