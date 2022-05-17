@@ -108,7 +108,7 @@ POS_SCORE = SCORE.get_rect(center=(WIDTH//100*92, HEIGHT//100*99+30))
 PAUSE = pygame.image.load('img/lvl1/pause.png').convert_alpha()
 POS_PAUSE = PAUSE.get_rect(center=(WIDTH//100*92, HEIGHT//100*6))
 
-speed = 5
+speed = 20
 acceleration = 1.0
 
 TASK_1 = FONT.render('30+30', 0, WHITE)

@@ -6,6 +6,7 @@ from osts import *
 
 
 pygame.display.set_caption('LVL1')
+clock = pygame.time.Clock()
 i = 0
 
 def draw_all():
@@ -68,25 +69,25 @@ while run:
     if POS_TUNNEL_0[0] < -WIDTH:
         # randomly select lane
         if random.randint(0, 1) == 0:
-            POS_TUNNEL_0.center = (WIDTH+20)*acceleration, HEIGHT//100*46
+            POS_TUNNEL_0.center = (WIDTH+10)*acceleration, HEIGHT//100*46
         else:
-            POS_TUNNEL_0.center = (WIDTH-20)*acceleration, HEIGHT//100*46
+            POS_TUNNEL_0.center = (WIDTH-10)*acceleration, HEIGHT//100*46
     
     POS_TUNNEL_1[0] -= speed*acceleration
     if POS_TUNNEL_1[0] < -WIDTH:
         # randomly select lane
         if random.randint(0, 1) == 0:
-            POS_TUNNEL_1.center = (WIDTH+20)*acceleration, HEIGHT//100*66
+            POS_TUNNEL_1.center = (WIDTH+10)*acceleration, HEIGHT//100*66
         else:
-            POS_TUNNEL_1.center = (WIDTH-20)*acceleration, HEIGHT//100*66
+            POS_TUNNEL_1.center = (WIDTH-10)*acceleration, HEIGHT//100*66
 
     POS_TUNNEL_2[0] -= speed*acceleration
     if POS_TUNNEL_2[0] < -WIDTH:
         # randomly select lane
         if random.randint(0, 1) == 0:
-            POS_TUNNEL_2.center = (WIDTH+20)*acceleration, HEIGHT//100*88
+            POS_TUNNEL_2.center = (WIDTH+10)*acceleration, HEIGHT//100*88
         else:
-            POS_TUNNEL_2.center = (WIDTH-20)*acceleration, HEIGHT//100*88
+            POS_TUNNEL_2.center = (WIDTH-10)*acceleration, HEIGHT//100*88
 
     # POS_ROAD[0] -= speed*acceleration
     # if POS_ROAD[0] < -WIDTH:
@@ -95,5 +96,5 @@ while run:
     
 
     pygame.display.update()
-
+    clock.tick(60)
 
