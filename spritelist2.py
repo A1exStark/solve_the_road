@@ -111,8 +111,7 @@ POS_PAUSE = PAUSE.get_rect(center=(WIDTH//100*92, HEIGHT//100*6))
 speed = 10
 acceleration = 1.0
 
-TASK_1 = FONT.render('30+30', 0, WHITE)
-POS_TASK_1 = TASK_1.get_rect(center=(WIDTH//2, HEIGHT//100*8))
+
 
 TUNNEL = pygame.image.load('img/lvl1/tunnel.png').convert_alpha()
 POS_TUNNEL_0 = TUNNEL.get_rect()
