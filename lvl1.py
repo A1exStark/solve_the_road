@@ -9,15 +9,36 @@ from osts import *
 pygame.display.set_caption('LVL1')
 clock = pygame.time.Clock()
 i = 0
+k = [2, 3, 4]
 
 all_exercises = []
+all_answers = []
 for exercise in range(10):
     first_sum = random.randint(0, 90)
     second_sum = random.randint(0, 100-first_sum-1)
-    sum = first_sum + second_sum
-    all_exercises.append([first_sum, second_sum, sum])
+    sum_true = first_sum + second_sum
+    sum_fake_1 = sum_true + random.randint(-10, 10)
+    sum_fake_2 = sum_true + random.randint(-10, 10)
+    all_exercises.append([first_sum, second_sum, sum_true, sum_fake_1, sum_fake_2])
+    all_answers.append([sum_true, sum_fake_1, sum_fake_2])
 
-# print(all_exercises)
+print(all_exercises)
+print(all_answers)
+
+random.shuffle(k)
+# print(all_exercises[0][k[0]], all_exercises[0][k[1]], all_exercises[0][k[2]])
+TUNNEL_EQUALS_0 = FONT.render(f'{all_exercises[0][k[0]]}', 0, WHITE)
+POS_TUNNEL_EQUALS_0 = TUNNEL_EQUALS_0.get_rect()
+POS_TUNNEL_EQUALS_0.center = WIDTH//100*129, HEIGHT//100*46
+
+TUNNEL_EQUALS_1 = FONT.render(f'{all_exercises[0][k[1]]}', 0, WHITE)
+POS_TUNNEL_EQUALS_1 = TUNNEL_EQUALS_1.get_rect()
+POS_TUNNEL_EQUALS_1.center = WIDTH//100*124, HEIGHT//100*66
+
+TUNNEL_EQUALS_2 = FONT.render(f'{all_exercises[0][k[2]]}', 0, WHITE)
+POS_TUNNEL_EQUALS_2 = TUNNEL_EQUALS_2.get_rect()
+POS_TUNNEL_EQUALS_2.center = WIDTH//100*128, HEIGHT//100*88
+
 
 def draw_all():
     WIN.blit(BG, POS_BG)
@@ -36,7 +57,9 @@ def draw_all():
     WIN.blit(TUNNEL, POS_TUNNEL_1)
     WIN.blit(TUNNEL, POS_TUNNEL_2)
 
-    
+    WIN.blit(TUNNEL_EQUALS_0, POS_TUNNEL_EQUALS_0)
+    WIN.blit(TUNNEL_EQUALS_1, POS_TUNNEL_EQUALS_1)
+    WIN.blit(TUNNEL_EQUALS_2, POS_TUNNEL_EQUALS_2)
 
 run = True
 ROAD_LANES = 1
@@ -63,32 +86,31 @@ while run:
         
     if 3000 < current_time < 8000:
         TASK_1 = FONT.render(f'{all_exercises[0][0]}+{all_exercises[0][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect(center=(WIDTH//2, HEIGHT//100*8))
+        POS_TASK_1 = TASK_1.get_rect()
+        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
         WIN.blit(TASK_1, POS_TASK_1)
 
         POS_TUNNEL_0[0] -= speed*acceleration
-        # if random.randint(0, 1) == 0:
-        #     POS_TUNNEL_0.center = (WIDTH+10)*acceleration, HEIGHT//100*46
-        # else:
-        #     POS_TUNNEL_0.center = (WIDTH-10)*acceleration, HEIGHT//100*46
-
         POS_TUNNEL_1[0] -= speed*acceleration
-        # if random.randint(0, 1) == 0:
-        #     POS_TUNNEL_1.center = (WIDTH+10)*acceleration, HEIGHT//100*66
-        # else:
-        #     POS_TUNNEL_1.center = (WIDTH-10)*acceleration, HEIGHT//100*66
-
         POS_TUNNEL_2[0] -= speed*acceleration
-        # if random.randint(0, 1) == 0:
-        #     POS_TUNNEL_2.center = (WIDTH+10)*acceleration, HEIGHT//100*88
-        # else:
-        #     POS_TUNNEL_2.center = (WIDTH-10)*acceleration, HEIGHT//100*88
+
+        POS_TUNNEL_EQUALS_0[0] -= speed*acceleration
+        POS_TUNNEL_EQUALS_1[0] -= speed*acceleration
+        POS_TUNNEL_EQUALS_2[0] -= speed*acceleration
+        
+    if 8000 < current_time < 10000:
+        POS_TUNNEL_0[0] = WIDTH//100*127
+        POS_TUNNEL_1[0] = WIDTH//100*122
+        POS_TUNNEL_2[0] = WIDTH//100*126
 
     if 10000 < current_time < 15000:
         TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)
         POS_TASK_1 = TASK_1.get_rect(center=(WIDTH//2, HEIGHT//100*8))
         WIN.blit(TASK_1, POS_TASK_1)
-
+            
+        POS_TUNNEL_0[0] -= speed*acceleration
+        POS_TUNNEL_1[0] -= speed*acceleration
+        POS_TUNNEL_2[0] -= speed*acceleration
 
     if i <= -WIDTH:
         WIN.blit(ROAD, (i+WIDTH, 0))
