@@ -40,15 +40,16 @@ while run:
                 ROAD_LANES += 1         
             if event.key == pygame.K_UP:
                 ROAD_LANES -= 1
-            if event.key == pygame.K_RIGHT:
-                acceleration += 0.5
-            if event.key == pygame.K_LEFT:
-                acceleration -= 0.5
-            
+        
+        if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
+            acceleration += 0.5
+        if (event.type == pygame.KEYDOWN and event.key == K_LEFT) or (event.type == pygame.KEYUP and event.key == K_RIGHT):
+            acceleration -= 0.5
+
     if i <= -WIDTH:
         WIN.blit(ROAD, (i+WIDTH, 0))
         i = 0
-    i -= speed
+    i -= speed*acceleration
 
 
     if ROAD_LANES == 0:
@@ -93,8 +94,6 @@ while run:
     # if POS_ROAD[0] < -WIDTH:
     #     POS_ROAD.center = WIDTH, HEIGHT//2
             
-    
-
     pygame.display.update()
     clock.tick(60)
 
