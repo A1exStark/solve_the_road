@@ -1,3 +1,4 @@
+from hashlib import new
 from numpy import append
 import pygame
 import random
@@ -25,17 +26,22 @@ for exercise in range(10):
 print(all_exercises)
 print(all_answers)
 
-random.shuffle(k)
+for all_answer in all_answers:
+    new_answers = all_answer
+    random.shuffle(new_answers)
+
+print(all_answers)
+
 # print(all_exercises[0][k[0]], all_exercises[0][k[1]], all_exercises[0][k[2]])
-TUNNEL_EQUALS_0 = FONT.render(f'{all_exercises[0][k[0]]}', 0, WHITE)
+TUNNEL_EQUALS_0 = FONT.render(f'{all_answers[0][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0 = TUNNEL_EQUALS_0.get_rect()
 POS_TUNNEL_EQUALS_0.center = WIDTH//100*129, HEIGHT//100*46
 
-TUNNEL_EQUALS_1 = FONT.render(f'{all_exercises[0][k[1]]}', 0, WHITE)
+TUNNEL_EQUALS_1 = FONT.render(f'{all_answers[0][1]}', 0, WHITE)
 POS_TUNNEL_EQUALS_1 = TUNNEL_EQUALS_1.get_rect()
 POS_TUNNEL_EQUALS_1.center = WIDTH//100*124, HEIGHT//100*66
 
-TUNNEL_EQUALS_2 = FONT.render(f'{all_exercises[0][k[2]]}', 0, WHITE)
+TUNNEL_EQUALS_2 = FONT.render(f'{all_answers[0][2]}', 0, WHITE)
 POS_TUNNEL_EQUALS_2 = TUNNEL_EQUALS_2.get_rect()
 POS_TUNNEL_EQUALS_2.center = WIDTH//100*128, HEIGHT//100*88
 
