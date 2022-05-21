@@ -81,11 +81,15 @@ def draw_all():
     WIN.blit(SCORE, POS_SCORE)
     WIN.blit(PAUSE, POS_PAUSE)
 
+    WIN.blit(TUNNEL_0, POS_TUNNEL_0_0)
+    WIN.blit(TUNNEL_0, POS_TUNNEL_0_1)
+    WIN.blit(TUNNEL_0, POS_TUNNEL_0_2)
+
     WIN.blit(CAR, POS_CAR)
 
-    WIN.blit(TUNNEL, POS_TUNNEL_0)
-    WIN.blit(TUNNEL, POS_TUNNEL_1)
-    WIN.blit(TUNNEL, POS_TUNNEL_2)
+    WIN.blit(TUNNEL_1, POS_TUNNEL_1_0)
+    WIN.blit(TUNNEL_1, POS_TUNNEL_1_1)
+    WIN.blit(TUNNEL_1, POS_TUNNEL_1_2)
 
     WIN.blit(TUNNEL_EQUALS_0_0, POS_TUNNEL_EQUALS_0_0)
     WIN.blit(TUNNEL_EQUALS_0_1, POS_TUNNEL_EQUALS_0_1)
@@ -147,60 +151,85 @@ while run:
         POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
         WIN.blit(TASK_1, POS_TASK_1)
 
-        POS_TUNNEL_0[0] -= speed*acceleration
-        POS_TUNNEL_1[0] -= speed*acceleration
-        POS_TUNNEL_2[0] -= speed*acceleration
+        POS_TUNNEL_0_0[0] -= speed*acceleration
+        POS_TUNNEL_0_1[0] -= speed*acceleration
+        POS_TUNNEL_0_2[0] -= speed*acceleration
+
+        POS_TUNNEL_1_0[0] -= speed*acceleration
+        POS_TUNNEL_1_1[0] -= speed*acceleration
+        POS_TUNNEL_1_2[0] -= speed*acceleration
 
         POS_TUNNEL_EQUALS_0_0[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_0_1[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_0_2[0] -= speed*acceleration
         
     if 8000 < current_time < 10000:
-        POS_TUNNEL_0[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_1[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_2[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_EQUALS_1_0[0] = ST_OFFSET_ANSWER+70
-        POS_TUNNEL_EQUALS_1_1[0] = ST_OFFSET_ANSWER+70
-        POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+70
+        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+        POS_TUNNEL_EQUALS_1_0[0] = ST_OFFSET_ANSWER+35
+        POS_TUNNEL_EQUALS_1_1[0] = ST_OFFSET_ANSWER+35
+        POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+35
 
     if 10000 < current_time < 15000:
         TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)
         POS_TASK_1 = TASK_1.get_rect(center=(WIDTH//2, HEIGHT//100*8))
         WIN.blit(TASK_1, POS_TASK_1)
             
-        POS_TUNNEL_0[0] -= speed*acceleration
-        POS_TUNNEL_1[0] -= speed*acceleration
-        POS_TUNNEL_2[0] -= speed*acceleration
+        POS_TUNNEL_0_0[0] -= speed*acceleration
+        POS_TUNNEL_0_1[0] -= speed*acceleration
+        POS_TUNNEL_0_2[0] -= speed*acceleration
+
+        POS_TUNNEL_1_0[0] -= speed*acceleration
+        POS_TUNNEL_1_1[0] -= speed*acceleration
+        POS_TUNNEL_1_2[0] -= speed*acceleration
 
         POS_TUNNEL_EQUALS_1_0[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_1_1[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_1_2[0] -= speed*acceleration
     
     if 15000 < current_time < 17000:
-        POS_TUNNEL_0[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_1[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_2[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_EQUALS_2_0[0] = ST_OFFSET_ANSWER+70
-        POS_TUNNEL_EQUALS_2_1[0] = ST_OFFSET_ANSWER+70
-        POS_TUNNEL_EQUALS_2_2[0] = ST_OFFSET_ANSWER+70
+        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+        POS_TUNNEL_EQUALS_2_0[0] = ST_OFFSET_ANSWER+35
+        POS_TUNNEL_EQUALS_2_1[0] = ST_OFFSET_ANSWER+35
+        POS_TUNNEL_EQUALS_2_2[0] = ST_OFFSET_ANSWER+35
 
     if 17000 < current_time < 22000:
         TASK_1 = FONT.render(f'{all_exercises[2][0]}+{all_exercises[2][1]}', 0, WHITE)
         POS_TASK_1 = TASK_1.get_rect(center=(WIDTH//2, HEIGHT//100*8))
         WIN.blit(TASK_1, POS_TASK_1)
 
-        POS_TUNNEL_0[0] -= speed*acceleration
-        POS_TUNNEL_1[0] -= speed*acceleration
-        POS_TUNNEL_2[0] -= speed*acceleration
+        POS_TUNNEL_0_0[0] -= speed*acceleration
+        POS_TUNNEL_0_1[0] -= speed*acceleration
+        POS_TUNNEL_0_2[0] -= speed*acceleration
+
+        POS_TUNNEL_1_0[0] -= speed*acceleration
+        POS_TUNNEL_1_1[0] -= speed*acceleration
+        POS_TUNNEL_1_2[0] -= speed*acceleration
 
         POS_TUNNEL_EQUALS_2_0[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_2_1[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_2_2[0] -= speed*acceleration
 
     if 22000 < current_time < 24000:
-        POS_TUNNEL_0[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_1[0] = ST_OFFSET_TUNNEL
-        POS_TUNNEL_2[0] = ST_OFFSET_TUNNEL
+        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
         
 
     
