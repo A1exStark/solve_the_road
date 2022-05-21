@@ -81,6 +81,8 @@ def draw_all():
     WIN.blit(SCORE, POS_SCORE)
     WIN.blit(PAUSE, POS_PAUSE)
 
+    WIN.blit(CAR, POS_CAR)
+
     WIN.blit(TUNNEL, POS_TUNNEL_0)
     WIN.blit(TUNNEL, POS_TUNNEL_1)
     WIN.blit(TUNNEL, POS_TUNNEL_2)
@@ -118,6 +120,25 @@ while run:
             acceleration += 0.5
         if (event.type == pygame.KEYDOWN and event.key == K_LEFT) or (event.type == pygame.KEYUP and event.key == K_RIGHT):
             acceleration -= 0.5
+
+    if i <= -WIDTH:
+        WIN.blit(ROAD, (i+WIDTH, 0))
+        i = 0
+    i -= speed*acceleration
+
+    if ROAD_LANES == 0:
+        POS_CAR[1] = HEIGHT//100*40
+        # print(ROAD_LANES)
+    elif ROAD_LANES == 1:
+        POS_CAR[1] = HEIGHT//100*60
+        # print(ROAD_LANES)
+    elif ROAD_LANES == 2:
+        POS_CAR[1] = HEIGHT//100*80
+        # print(ROAD_LANES)
+    elif ROAD_LANES > 2:
+        ROAD_LANES = 2
+    elif ROAD_LANES < 0:
+        ROAD_LANES = 0
 
         
     if 3000 < current_time < 8000:
@@ -182,25 +203,7 @@ while run:
         POS_TUNNEL_2[0] = ST_OFFSET_TUNNEL
         
 
-    if i <= -WIDTH:
-        WIN.blit(ROAD, (i+WIDTH, 0))
-        i = 0
-    i -= speed*acceleration
-
-
-    if ROAD_LANES == 0:
-        WIN.blit(CAR, POS_CAR_0)
-        # print(ROAD_LANES)
-    elif ROAD_LANES == 1:
-        WIN.blit(CAR, POS_CAR_1)
-        # print(ROAD_LANES)
-    elif ROAD_LANES == 2:
-        WIN.blit(CAR, POS_CAR_2)
-        # print(ROAD_LANES)
-    elif ROAD_LANES > 2:
-        ROAD_LANES = 2
-    elif ROAD_LANES < 0:
-        ROAD_LANES = 0
+    
         
     
 
