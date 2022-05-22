@@ -11,7 +11,7 @@ from osts import *
 pygame.display.set_caption('LVL1')
 clock = pygame.time.Clock()
 i = 0
-
+lives = 3
 
 all_exercises = []
 all_answers = []
@@ -26,14 +26,14 @@ for exercise in range(10):
     all_exercises.append([first_sum, second_sum, sum_true, sum_fake_1, sum_fake_2])
     all_answers.append([sum_true, sum_fake_1, sum_fake_2])
 
-print(all_exercises)
+# print(all_exercises)
 # print(all_answers)
 
 for all_answer in all_answers:
     new_answers = all_answer
     random.shuffle(new_answers)
 
-print(all_answers)
+# print(all_answers)
 
 jj = 0
 
@@ -41,54 +41,63 @@ for all_answer in all_answers:
     for a_a in all_answer:
         if jj % 3 == 0:
             kk = math.floor(jj/3)
-            if a_a == all_exercises[kk][2]:
-                print(f'{kk} {a_a} {all_exercises[kk][2]}')
-                all_answer_flags.append(True)
             jj += 1
         else:
             kk = math.floor(jj/3)
-            if a_a == all_exercises[kk][2]:
-                print(f'{kk} {a_a} {all_exercises[kk][2]}')
-            all_answer_flags.append(False)
             jj += 1
+        if a_a == all_exercises[kk][2]:
+            all_answer_flags.append(True)
+        else:
+            all_answer_flags.append(False)
+            
+        # print(f'{kk} {a_a} {all_exercises[kk][2]}')
 
-print(all_answer_flags)
+# print(all_answer_flags)
 
 TUNNEL_EQUALS_0_0 = FONT.render(f'{all_answers[0][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0_0 = TUNNEL_EQUALS_0_0.get_rect()
 POS_TUNNEL_EQUALS_0_0.center = ST_OFFSET_ANSWER, HEIGHT//100*46
+TUNNEL_LOGIC = all_answer_flags[0]
 
 TUNNEL_EQUALS_0_1 = FONT.render(f'{all_answers[0][1]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0_1 = TUNNEL_EQUALS_0_1.get_rect()
 POS_TUNNEL_EQUALS_0_1.center = ST_OFFSET_ANSWER, HEIGHT//100*66
+TUNNEL_LOGIC = all_answer_flags[1]
 
 TUNNEL_EQUALS_0_2 = FONT.render(f'{all_answers[0][2]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0_2 = TUNNEL_EQUALS_0_2.get_rect()
 POS_TUNNEL_EQUALS_0_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
+TUNNEL_LOGIC = all_answer_flags[2]
 
 TUNNEL_EQUALS_1_0 = FONT.render(f'{all_answers[1][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_1_0 = TUNNEL_EQUALS_1_0.get_rect()
 POS_TUNNEL_EQUALS_1_0.center = ST_OFFSET_ANSWER, HEIGHT//100*46
+TUNNEL_LOGIC = all_answer_flags[3]
 
 TUNNEL_EQUALS_1_1 = FONT.render(f'{all_answers[1][1]}', 0, WHITE)
 POS_TUNNEL_EQUALS_1_1 = TUNNEL_EQUALS_1_1.get_rect()
 POS_TUNNEL_EQUALS_1_1.center = ST_OFFSET_ANSWER, HEIGHT//100*66
+TUNNEL_LOGIC = all_answer_flags[4]
 
 TUNNEL_EQUALS_1_2 = FONT.render(f'{all_answers[1][2]}', 0, WHITE)
 POS_TUNNEL_EQUALS_1_2 = TUNNEL_EQUALS_1_2.get_rect()
 POS_TUNNEL_EQUALS_1_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
+TUNNEL_LOGIC = all_answer_flags[5]
 
 TUNNEL_EQUALS_2_0 = FONT.render(f'{all_answers[1][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_2_0 = TUNNEL_EQUALS_2_0.get_rect()
 POS_TUNNEL_EQUALS_2_0.center = ST_OFFSET_ANSWER, HEIGHT//100*46
+TUNNEL_LOGIC = all_answer_flags[6]
 
 TUNNEL_EQUALS_2_1 = FONT.render(f'{all_answers[1][1]}', 0, WHITE)
 POS_TUNNEL_EQUALS_2_1 = TUNNEL_EQUALS_2_1.get_rect()
 POS_TUNNEL_EQUALS_2_1.center = ST_OFFSET_ANSWER, HEIGHT//100*66
+TUNNEL_LOGIC = all_answer_flags[7]
 
 TUNNEL_EQUALS_2_2 = FONT.render(f'{all_answers[1][2]}', 0, WHITE)
 POS_TUNNEL_EQUALS_2_2 = TUNNEL_EQUALS_2_2.get_rect()
 POS_TUNNEL_EQUALS_2_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
+TUNNEL_LOGIC = all_answer_flags[8]
 
 def draw_all():
     WIN.blit(BG, POS_BG)
