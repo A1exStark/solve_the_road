@@ -1,5 +1,6 @@
 from hashlib import new
 from numpy import append
+import math
 import pygame
 import random
 from pygame.locals import *
@@ -14,23 +15,44 @@ i = 0
 
 all_exercises = []
 all_answers = []
+all_answer_flags = []
 for exercise in range(10):
     first_sum = random.randint(0, 90)
     second_sum = random.randint(0, 100-first_sum-1)
     sum_true = first_sum + second_sum
     sum_fake_1 = sum_true + random.randint(-10, 10)
     sum_fake_2 = sum_true + random.randint(-10, 10)
+    # if sum_true == sum_fake_1 or sum_true
     all_exercises.append([first_sum, second_sum, sum_true, sum_fake_1, sum_fake_2])
     all_answers.append([sum_true, sum_fake_1, sum_fake_2])
 
-# print(all_exercises)
+print(all_exercises)
 # print(all_answers)
 
 for all_answer in all_answers:
     new_answers = all_answer
     random.shuffle(new_answers)
 
-# print(all_answers)
+print(all_answers)
+
+jj = 0
+
+for all_answer in all_answers:
+    for a_a in all_answer:
+        if jj % 3 == 0:
+            kk = math.floor(jj/3)
+            if a_a == all_exercises[kk][2]:
+                print(f'{kk} {a_a} {all_exercises[kk][2]}')
+                all_answer_flags.append(True)
+            jj += 1
+        else:
+            kk = math.floor(jj/3)
+            if a_a == all_exercises[kk][2]:
+                print(f'{kk} {a_a} {all_exercises[kk][2]}')
+            all_answer_flags.append(False)
+            jj += 1
+
+print(all_answer_flags)
 
 TUNNEL_EQUALS_0_0 = FONT.render(f'{all_answers[0][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0_0 = TUNNEL_EQUALS_0_0.get_rect()
