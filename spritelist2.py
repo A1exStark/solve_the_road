@@ -9,6 +9,7 @@ pygame.mouse.set_visible(False)
 
 
 FONT = pygame.font.Font('fonts/font3.ttf', 24)
+FONT_SCORE = pygame.font.Font('fonts/font3.ttf', 16)
 
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -114,7 +115,7 @@ POS_SCORE = SCORE.get_rect(center=(WIDTH//100*92, HEIGHT//100*99+30))
 PAUSE = pygame.image.load('img/lvl1/pause.png').convert_alpha()
 POS_PAUSE = PAUSE.get_rect(center=(WIDTH//100*92, HEIGHT//100*6))
 
-speed = 10
+speed = 8
 acceleration = 1.0
 
 ST_OFFSET_TUNNEL_0 = WIDTH+100
