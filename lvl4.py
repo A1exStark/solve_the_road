@@ -4,11 +4,12 @@ import math
 import pygame
 import random
 from pygame.locals import *
-from spritelist_3 import *
+from scipy import rand
+from spritelist_4 import *
 from osts import *
 
 
-pygame.display.set_caption('LVL3')
+pygame.display.set_caption('LVL4')
 clock = pygame.time.Clock()
 i = 0
 exercises = 10
@@ -16,10 +17,14 @@ exercises = 10
 all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
 
 for exercise in range(10):
-    first_sum = random.randint(1, 9)
-    second_sum = random.randint(1, 9)
+    first_sum_prep = random.randint(1, 9)
+    second_sum_prep = random.randint(1, 9)
+    sum_prep = first_sum_prep * second_sum_prep
+    
+    first_sum = sum_prep
+    second_sum = second_sum_prep
 
-    sum_true = first_sum * second_sum
+    sum_true = int(first_sum/second_sum)
 
     if sum_true > 89:
         sum_fake_1 = sum_true + random.randint(-10, 0)
@@ -338,13 +343,13 @@ while run:
     i -= speed*acceleration
 
     if ROAD_LANES == 0:
-        POS_CAR[1] = HEIGHT//100*40
+        POS_CAR[1] = HEIGHT//100*37
         # print(ROAD_LANES)
     elif ROAD_LANES == 1:
-        POS_CAR[1] = HEIGHT//100*60
+        POS_CAR[1] = HEIGHT//100*57
         # print(ROAD_LANES)
     elif ROAD_LANES == 2:
-        POS_CAR[1] = HEIGHT//100*80
+        POS_CAR[1] = HEIGHT//100*77
         # print(ROAD_LANES)
     elif ROAD_LANES > 2:
         ROAD_LANES = 2
@@ -353,7 +358,7 @@ while run:
 
     if lives != 0:    
         if 3000 < current_time < 8000:
-            TASK_1 = FONT.render(f'{all_exercises[0][0]}х{all_exercises[0][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[0][0]}:{all_exercises[0][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -414,7 +419,7 @@ while run:
             POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+35
 
         if 10000 < current_time < 15000:
-            TASK_1 = FONT.render(f'{all_exercises[1][0]}х{all_exercises[1][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[1][0]}:{all_exercises[1][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -475,7 +480,7 @@ while run:
             POS_TUNNEL_EQUALS_2_2[0] = ST_OFFSET_ANSWER+35
 
         if 17000 < current_time < 22000:
-            TASK_1 = FONT.render(f'{all_exercises[2][0]}х{all_exercises[2][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[2][0]}:{all_exercises[2][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -536,7 +541,7 @@ while run:
             POS_TUNNEL_EQUALS_3_2[0] = ST_OFFSET_ANSWER+35
 
         if 24000 < current_time < 29000:
-            TASK_1 = FONT.render(f'{all_exercises[3][0]}х{all_exercises[3][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[3][0]}:{all_exercises[3][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -597,7 +602,7 @@ while run:
             POS_TUNNEL_EQUALS_4_2[0] = ST_OFFSET_ANSWER+35
 
         if 31000 < current_time < 36000:
-            TASK_1 = FONT.render(f'{all_exercises[4][0]}х{all_exercises[4][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[4][0]}:{all_exercises[4][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -658,7 +663,7 @@ while run:
             POS_TUNNEL_EQUALS_5_2[0] = ST_OFFSET_ANSWER+35
 
         if 38000 < current_time < 43000:
-            TASK_1 = FONT.render(f'{all_exercises[5][0]}х{all_exercises[5][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[5][0]}:{all_exercises[5][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -719,7 +724,7 @@ while run:
             POS_TUNNEL_EQUALS_6_2[0] = ST_OFFSET_ANSWER+35
 
         if 45000 < current_time < 50000:
-            TASK_1 = FONT.render(f'{all_exercises[6][0]}х{all_exercises[6][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[6][0]}:{all_exercises[6][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -780,7 +785,7 @@ while run:
             POS_TUNNEL_EQUALS_7_2[0] = ST_OFFSET_ANSWER+35
 
         if 52000 < current_time < 57000:
-            TASK_1 = FONT.render(f'{all_exercises[7][0]}х{all_exercises[7][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[7][0]}:{all_exercises[7][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -841,7 +846,7 @@ while run:
             POS_TUNNEL_EQUALS_8_2[0] = ST_OFFSET_ANSWER+35
 
         if 59000 < current_time < 64000:
-            TASK_1 = FONT.render(f'{all_exercises[8][0]}х{all_exercises[8][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[8][0]}:{all_exercises[8][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
@@ -902,7 +907,7 @@ while run:
             POS_TUNNEL_EQUALS_9_2[0] = ST_OFFSET_ANSWER+35
 
         if 66000 < current_time < 71000:
-            TASK_1 = FONT.render(f'{all_exercises[9][0]}х{all_exercises[9][1]}', 0, WHITE)
+            TASK_1 = FONT.render(f'{all_exercises[9][0]}:{all_exercises[9][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
             WIN.blit(TASK_1, POS_TASK_1)
