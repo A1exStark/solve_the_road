@@ -4,7 +4,7 @@ import math
 import pygame
 import random
 from pygame.locals import *
-from spritelist2 import *
+from spritelist_1 import *
 from osts import *
 
 

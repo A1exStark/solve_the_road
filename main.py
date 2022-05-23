@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from spritelist import *
+from spritelist_menu import *
 from osts import *
 
 
