@@ -93,6 +93,10 @@ POS_TUNNEL_EQUALS_2_2 = TUNNEL_EQUALS_2_2.get_rect()
 POS_TUNNEL_EQUALS_2_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
 TUNNEL_LOGIC_2_2 = all_answer_flag[8]
 
+print(TUNNEL_LOGIC_0_0)
+print(TUNNEL_LOGIC_0_1)
+print(TUNNEL_LOGIC_0_2)
+
 def draw_all():
     WIN.blit(BG, POS_BG)
     WIN.blit(MOUNTAINS, POS_MOUNTAINS)
@@ -198,6 +202,20 @@ while run:
         POS_TUNNEL_1_1[0] -= speed*acceleration
         POS_TUNNEL_1_2[0] -= speed*acceleration
 
+        if CAR_RIGHT-5 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+5 and TUNNEL_LOGIC_0_0 == False and ROAD_LANES == 0:
+            pygame.time.wait(2000)
+            lives -= 1
+        if CAR_RIGHT-5 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+5 and TUNNEL_LOGIC_0_1 == False and ROAD_LANES == 1:
+            pygame.time.wait(2000)
+            lives -= 1
+        if CAR_RIGHT-5 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+5 and TUNNEL_LOGIC_0_2 == False and ROAD_LANES == 2:
+            pygame.time.wait(2000)
+            lives -= 1
+
+        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {TUNNEL_LOGIC_0_0}')
+        # print(f'{POS_TUNNEL_1_1[0]} {CAR_RIGHT} {TUNNEL_LOGIC_0_1}')
+        # print(f'{POS_TUNNEL_1_2[0]} {CAR_RIGHT} {TUNNEL_LOGIC_0_2}')
+
         POS_TUNNEL_EQUALS_0_0[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_0_1[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_0_2[0] -= speed*acceleration
@@ -216,7 +234,6 @@ while run:
         POS_TUNNEL_EQUALS_1_0[0] = ST_OFFSET_ANSWER+35
         POS_TUNNEL_EQUALS_1_1[0] = ST_OFFSET_ANSWER+35
         POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+35
-        # pygame.time.wait(2000)
 
     if 10000 < current_time < 15000:
         TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)

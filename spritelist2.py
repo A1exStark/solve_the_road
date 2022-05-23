@@ -91,8 +91,10 @@ ROAD = pygame.image.load('img/lvl1/road.png').convert_alpha()
 # POS_ROAD.center = WIDTH//2, HEIGHT//2
 
 CAR = pygame.image.load('img/lvl1/car.png').convert_alpha()
+CAR_WIDTH = CAR.get_width()
 POS_CAR = CAR.get_rect()
 POS_CAR.center = WIDTH//100*20, HEIGHT//100*70
+CAR_RIGHT = POS_CAR[0]+CAR_WIDTH
 
 POS_CAR_0 = CAR.get_rect(center=(WIDTH//100*20, HEIGHT//100*50))
 POS_CAR_1 = CAR.get_rect(center=(WIDTH//100*20, HEIGHT//100*70))
