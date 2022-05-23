@@ -218,7 +218,22 @@ def draw_all():
     WIN.blit(TUNNEL_0, POS_TUNNEL_0_1)
     WIN.blit(TUNNEL_0, POS_TUNNEL_0_2)
 
-    WIN.blit(CAR, POS_CAR) # car animation
+    ostatok = current_time%10
+
+
+    if lives == 3 and ostatok == 0:
+        WIN.blit(CAR, POS_CAR)
+    elif lives == 3 and ostatok != 0:
+        WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
+    if lives == 2 and ostatok == 0:
+        WIN.blit(CAR, POS_CAR)
+    elif lives == 2 and ostatok != 0:
+        WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
+    if lives == 1 and ostatok == 0:
+        WIN.blit(CAR, POS_CAR)
+    elif lives == 1 and ostatok != 0:
+        WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
+    
 
     WIN.blit(TUNNEL_1, POS_TUNNEL_1_0)
     WIN.blit(TUNNEL_1, POS_TUNNEL_1_1)
@@ -270,7 +285,7 @@ lives = 3
 score = 0
 score_limit = 1
 COLLISION = False
-COLLISION_PAUSE = 2000
+COLLISION_PAUSE = 1000
 pressed = pygame.key.get_pressed()
 while run:
     current_time = pygame.time.get_ticks()

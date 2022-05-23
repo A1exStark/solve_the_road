@@ -97,9 +97,13 @@ POS_CAR = CAR.get_rect()
 POS_CAR.center = WIDTH//100*20, HEIGHT//100*70
 CAR_RIGHT = POS_CAR[0]+CAR_WIDTH
 
-POS_CAR_0 = CAR.get_rect(center=(WIDTH//100*20, HEIGHT//100*50))
-POS_CAR_1 = CAR.get_rect(center=(WIDTH//100*20, HEIGHT//100*70))
-POS_CAR_2 = CAR.get_rect(center=(WIDTH//100*20, HEIGHT//100*90))
+CAR_2 = pygame.image.load('img/lvl1/car_crashed_1.png').convert_alpha()
+CAR_2_WIDTH = CAR_2.get_width()
+POS_CAR_2 = CAR_2.get_rect()
+POS_CAR_2.center = WIDTH//100*20, HEIGHT//100*70
+CAR_2_RIGHT = POS_CAR_2[0]+CAR_2_WIDTH
+
+
 
 #UI
 TASK = pygame.image.load('img/lvl1/task.png').convert_alpha()
