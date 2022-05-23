@@ -198,25 +198,26 @@ POS_TUNNEL_EQUALS_9_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
 TUNNEL_LOGIC_9_2 = all_answer_flag[29]
 
 def draw_all():
-    WIN.blit(BG, POS_BG)
-    WIN.blit(MOUNTAINS, POS_MOUNTAINS)
-    WIN.blit(FOREST, POS_FOREST)
-    WIN.blit(ROAD, (i, 0))
-    WIN.blit(ROAD, (WIDTH+i, 0))
-    # WIN.blit(ROAD, POS_ROAD)
-    WIN.blit(TASK, POS_TASK)
-    
-    # WIN.blit(HEART, POS_HEART_0)
-    # WIN.blit(HEART, POS_HEART_1)
-    # WIN.blit(HEART, POS_HEART_2)
+    if lives != 0:
+        WIN.blit(BG, POS_BG)
+        WIN.blit(MOUNTAINS, POS_MOUNTAINS)
+        WIN.blit(FOREST, POS_FOREST)
+        WIN.blit(ROAD, (i, 0))
+        WIN.blit(ROAD, (WIDTH+i, 0))
+        # WIN.blit(ROAD, POS_ROAD)
+        WIN.blit(TASK, POS_TASK)
+
+        # WIN.blit(HEART, POS_HEART_0)
+        # WIN.blit(HEART, POS_HEART_1)
+        # WIN.blit(HEART, POS_HEART_2)
 
 
-    WIN.blit(SCORE, POS_SCORE)
-    WIN.blit(PAUSE, POS_PAUSE)
+        WIN.blit(SCORE, POS_SCORE)
+        WIN.blit(PAUSE, POS_PAUSE)
 
-    WIN.blit(TUNNEL_0, POS_TUNNEL_0_0)
-    WIN.blit(TUNNEL_0, POS_TUNNEL_0_1)
-    WIN.blit(TUNNEL_0, POS_TUNNEL_0_2)
+        WIN.blit(TUNNEL_0, POS_TUNNEL_0_0)
+        WIN.blit(TUNNEL_0, POS_TUNNEL_0_1)
+        WIN.blit(TUNNEL_0, POS_TUNNEL_0_2)
 
     ostatok = current_time%10
 
@@ -233,51 +234,61 @@ def draw_all():
         WIN.blit(CAR, POS_CAR)
     elif lives == 1 and ostatok != 0:
         WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
-    
+    elif lives == 0:
+        # WIN.blit(CAR_4, POS_CAR_4)
+        WIN.blit(MAIN_MENU_BACK, POS_BACK)
+        GAME_OVER = FONT.render(f'GAME OVER', 0, WHITE)
+        POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
+        GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
+        POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+        WIN.blit(GAME_OVER, POS_GAME_OVER)
+        WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+        
+        
+    if lives != 0:
+        WIN.blit(TUNNEL_1, POS_TUNNEL_1_0)
+        WIN.blit(TUNNEL_1, POS_TUNNEL_1_1)
+        WIN.blit(TUNNEL_1, POS_TUNNEL_1_2)
 
-    WIN.blit(TUNNEL_1, POS_TUNNEL_1_0)
-    WIN.blit(TUNNEL_1, POS_TUNNEL_1_1)
-    WIN.blit(TUNNEL_1, POS_TUNNEL_1_2)
+        WIN.blit(TUNNEL_EQUALS_0_0, POS_TUNNEL_EQUALS_0_0)
+        WIN.blit(TUNNEL_EQUALS_0_1, POS_TUNNEL_EQUALS_0_1)
+        WIN.blit(TUNNEL_EQUALS_0_2, POS_TUNNEL_EQUALS_0_2)
 
-    WIN.blit(TUNNEL_EQUALS_0_0, POS_TUNNEL_EQUALS_0_0)
-    WIN.blit(TUNNEL_EQUALS_0_1, POS_TUNNEL_EQUALS_0_1)
-    WIN.blit(TUNNEL_EQUALS_0_2, POS_TUNNEL_EQUALS_0_2)
+        WIN.blit(TUNNEL_EQUALS_1_0, POS_TUNNEL_EQUALS_1_0)
+        WIN.blit(TUNNEL_EQUALS_1_1, POS_TUNNEL_EQUALS_1_1)
+        WIN.blit(TUNNEL_EQUALS_1_2, POS_TUNNEL_EQUALS_1_2)
+        
+        WIN.blit(TUNNEL_EQUALS_2_0, POS_TUNNEL_EQUALS_2_0)
+        WIN.blit(TUNNEL_EQUALS_2_1, POS_TUNNEL_EQUALS_2_1)
+        WIN.blit(TUNNEL_EQUALS_2_2, POS_TUNNEL_EQUALS_2_2)
 
-    WIN.blit(TUNNEL_EQUALS_1_0, POS_TUNNEL_EQUALS_1_0)
-    WIN.blit(TUNNEL_EQUALS_1_1, POS_TUNNEL_EQUALS_1_1)
-    WIN.blit(TUNNEL_EQUALS_1_2, POS_TUNNEL_EQUALS_1_2)
-    
-    WIN.blit(TUNNEL_EQUALS_2_0, POS_TUNNEL_EQUALS_2_0)
-    WIN.blit(TUNNEL_EQUALS_2_1, POS_TUNNEL_EQUALS_2_1)
-    WIN.blit(TUNNEL_EQUALS_2_2, POS_TUNNEL_EQUALS_2_2)
+        WIN.blit(TUNNEL_EQUALS_3_0, POS_TUNNEL_EQUALS_3_0)
+        WIN.blit(TUNNEL_EQUALS_3_1, POS_TUNNEL_EQUALS_3_1)
+        WIN.blit(TUNNEL_EQUALS_3_2, POS_TUNNEL_EQUALS_3_2)
 
-    WIN.blit(TUNNEL_EQUALS_3_0, POS_TUNNEL_EQUALS_3_0)
-    WIN.blit(TUNNEL_EQUALS_3_1, POS_TUNNEL_EQUALS_3_1)
-    WIN.blit(TUNNEL_EQUALS_3_2, POS_TUNNEL_EQUALS_3_2)
+        WIN.blit(TUNNEL_EQUALS_4_0, POS_TUNNEL_EQUALS_4_0)
+        WIN.blit(TUNNEL_EQUALS_4_1, POS_TUNNEL_EQUALS_4_1)
+        WIN.blit(TUNNEL_EQUALS_4_2, POS_TUNNEL_EQUALS_4_2)
 
-    WIN.blit(TUNNEL_EQUALS_4_0, POS_TUNNEL_EQUALS_4_0)
-    WIN.blit(TUNNEL_EQUALS_4_1, POS_TUNNEL_EQUALS_4_1)
-    WIN.blit(TUNNEL_EQUALS_4_2, POS_TUNNEL_EQUALS_4_2)
+        WIN.blit(TUNNEL_EQUALS_5_0, POS_TUNNEL_EQUALS_5_0)
+        WIN.blit(TUNNEL_EQUALS_5_1, POS_TUNNEL_EQUALS_5_1)
+        WIN.blit(TUNNEL_EQUALS_5_2, POS_TUNNEL_EQUALS_5_2)
 
-    WIN.blit(TUNNEL_EQUALS_5_0, POS_TUNNEL_EQUALS_5_0)
-    WIN.blit(TUNNEL_EQUALS_5_1, POS_TUNNEL_EQUALS_5_1)
-    WIN.blit(TUNNEL_EQUALS_5_2, POS_TUNNEL_EQUALS_5_2)
+        WIN.blit(TUNNEL_EQUALS_6_0, POS_TUNNEL_EQUALS_6_0)
+        WIN.blit(TUNNEL_EQUALS_6_1, POS_TUNNEL_EQUALS_6_1)
+        WIN.blit(TUNNEL_EQUALS_6_2, POS_TUNNEL_EQUALS_6_2)
 
-    WIN.blit(TUNNEL_EQUALS_6_0, POS_TUNNEL_EQUALS_6_0)
-    WIN.blit(TUNNEL_EQUALS_6_1, POS_TUNNEL_EQUALS_6_1)
-    WIN.blit(TUNNEL_EQUALS_6_2, POS_TUNNEL_EQUALS_6_2)
+        WIN.blit(TUNNEL_EQUALS_7_0, POS_TUNNEL_EQUALS_7_0)
+        WIN.blit(TUNNEL_EQUALS_7_1, POS_TUNNEL_EQUALS_7_1)
+        WIN.blit(TUNNEL_EQUALS_7_2, POS_TUNNEL_EQUALS_7_2)
 
-    WIN.blit(TUNNEL_EQUALS_7_0, POS_TUNNEL_EQUALS_7_0)
-    WIN.blit(TUNNEL_EQUALS_7_1, POS_TUNNEL_EQUALS_7_1)
-    WIN.blit(TUNNEL_EQUALS_7_2, POS_TUNNEL_EQUALS_7_2)
+        WIN.blit(TUNNEL_EQUALS_8_0, POS_TUNNEL_EQUALS_8_0)
+        WIN.blit(TUNNEL_EQUALS_8_1, POS_TUNNEL_EQUALS_8_1)
+        WIN.blit(TUNNEL_EQUALS_8_2, POS_TUNNEL_EQUALS_8_2)
 
-    WIN.blit(TUNNEL_EQUALS_8_0, POS_TUNNEL_EQUALS_8_0)
-    WIN.blit(TUNNEL_EQUALS_8_1, POS_TUNNEL_EQUALS_8_1)
-    WIN.blit(TUNNEL_EQUALS_8_2, POS_TUNNEL_EQUALS_8_2)
-
-    WIN.blit(TUNNEL_EQUALS_9_0, POS_TUNNEL_EQUALS_9_0)
-    WIN.blit(TUNNEL_EQUALS_9_1, POS_TUNNEL_EQUALS_9_1)
-    WIN.blit(TUNNEL_EQUALS_9_2, POS_TUNNEL_EQUALS_9_2)
+        WIN.blit(TUNNEL_EQUALS_9_0, POS_TUNNEL_EQUALS_9_0)
+        WIN.blit(TUNNEL_EQUALS_9_1, POS_TUNNEL_EQUALS_9_1)
+        WIN.blit(TUNNEL_EQUALS_9_2, POS_TUNNEL_EQUALS_9_2)
 
 run = True
 ROAD_LANES = 1
@@ -334,619 +345,618 @@ while run:
     elif ROAD_LANES < 0:
         ROAD_LANES = 0
 
-        
-    if 3000 < current_time < 8000:
-        TASK_1 = FONT.render(f'{all_exercises[0][0]}+{all_exercises[0][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_0_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_0_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_0_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 8000 < current_time < 10000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_1_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_1_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+35
-
-    if 10000 < current_time < 12000:
-        TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_1_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_1_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_1_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 12000 < current_time < 17000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_1_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_1_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_1_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_2_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_2_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_2_2[0] = ST_OFFSET_ANSWER+35
-
-    if 17000 < current_time < 22000:
-        TASK_1 = FONT.render(f'{all_exercises[2][0]}+{all_exercises[2][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_2_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_2_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_2_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 22000 < current_time < 24000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_2_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_2_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_2_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_3_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_3_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_3_2[0] = ST_OFFSET_ANSWER+35
-
-    if 24000 < current_time < 29000:
-        TASK_1 = FONT.render(f'{all_exercises[3][0]}+{all_exercises[3][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_3_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_3_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_3_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 29000 < current_time < 31000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_3_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_3_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_3_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_4_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_4_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_4_2[0] = ST_OFFSET_ANSWER+35
-
-    if 31000 < current_time < 36000:
-        TASK_1 = FONT.render(f'{all_exercises[4][0]}+{all_exercises[4][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_4_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_4_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_4_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 36000 < current_time < 38000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_4_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_4_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_4_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_5_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_5_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_5_2[0] = ST_OFFSET_ANSWER+35
-
-    if 38000 < current_time < 43000:
-        TASK_1 = FONT.render(f'{all_exercises[5][0]}+{all_exercises[5][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_5_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_5_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_5_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 43000 < current_time < 45000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_5_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_5_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_5_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_6_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_6_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_6_2[0] = ST_OFFSET_ANSWER+35
-
-    if 45000 < current_time < 50000:
-        TASK_1 = FONT.render(f'{all_exercises[6][0]}+{all_exercises[6][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_6_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_6_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_6_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 50000 < current_time < 52000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_6_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_6_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_6_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_7_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_7_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_7_2[0] = ST_OFFSET_ANSWER+35
-
-    if 52000 < current_time < 57000:
-        TASK_1 = FONT.render(f'{all_exercises[7][0]}+{all_exercises[7][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_7_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_7_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_7_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 57000 < current_time < 59000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_7_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_7_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_7_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_8_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_8_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_8_2[0] = ST_OFFSET_ANSWER+35
-
-    if 59000 < current_time < 64000:
-        TASK_1 = FONT.render(f'{all_exercises[8][0]}+{all_exercises[8][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_8_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_8_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_8_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 64000 < current_time < 66000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_8_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_8_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_8_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-        POS_TUNNEL_EQUALS_9_0[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_9_1[0] = ST_OFFSET_ANSWER+35
-        POS_TUNNEL_EQUALS_9_2[0] = ST_OFFSET_ANSWER+35
-
-    if 66000 < current_time < 71000:
-        TASK_1 = FONT.render(f'{all_exercises[9][0]}+{all_exercises[9][1]}', 0, WHITE)
-        POS_TASK_1 = TASK_1.get_rect()
-        POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
-        WIN.blit(TASK_1, POS_TASK_1)
-
-        POS_TUNNEL_0_0[0] -= speed*acceleration
-        POS_TUNNEL_0_1[0] -= speed*acceleration
-        POS_TUNNEL_0_2[0] -= speed*acceleration
-
-        POS_TUNNEL_1_0[0] -= speed*acceleration
-        POS_TUNNEL_1_1[0] -= speed*acceleration
-        POS_TUNNEL_1_2[0] -= speed*acceleration
-
-        POS_TUNNEL_EQUALS_9_0[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_9_1[0] -= speed*acceleration
-        POS_TUNNEL_EQUALS_9_2[0] -= speed*acceleration
-
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_0 == False and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_0 == True and ROAD_LANES == 0 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == False and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == True and ROAD_LANES == 1 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-        if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == False and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            pygame.time.wait(COLLISION_PAUSE)
-            lives -= 1
-        elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == True and ROAD_LANES == 2 and COLLISION == False:
-            COLLISION = True
-            score += score_limit
-
-        # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
-
-    if 71000 < current_time < 73000:
-        COLLISION = False
-
-        POS_TUNNEL_EQUALS_9_0[0] = -WIDTH
-        POS_TUNNEL_EQUALS_9_1[0] = -WIDTH
-        POS_TUNNEL_EQUALS_9_2[0] = -WIDTH
-
-        POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
-        POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
-
-        POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
-        POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
-
-
-    
-
-    SCORE_0 = FONT_SCORE.render(f'{score}', 0, WHITE)
-    POS_SCORE_0 = SCORE_0.get_rect(center=(WIDTH//100*92, HEIGHT//100*99+30))
-    WIN.blit(SCORE_0, POS_SCORE_0)
+    if lives != 0:    
+        if 3000 < current_time < 8000:
+            TASK_1 = FONT.render(f'{all_exercises[0][0]}+{all_exercises[0][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_0_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_0_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_0_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 8000 < current_time < 10000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_1_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_1_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+35
+
+        if 10000 < current_time < 15000:
+            TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_1_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_1_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_1_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 15000 < current_time < 17000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_1_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_1_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_1_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_2_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_2_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_2_2[0] = ST_OFFSET_ANSWER+35
+
+        if 17000 < current_time < 22000:
+            TASK_1 = FONT.render(f'{all_exercises[2][0]}+{all_exercises[2][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_2_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_2_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_2_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 22000 < current_time < 24000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_2_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_2_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_2_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_3_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_3_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_3_2[0] = ST_OFFSET_ANSWER+35
+
+        if 24000 < current_time < 29000:
+            TASK_1 = FONT.render(f'{all_exercises[3][0]}+{all_exercises[3][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_3_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_3_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_3_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 29000 < current_time < 31000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_3_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_3_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_3_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_4_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_4_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_4_2[0] = ST_OFFSET_ANSWER+35
+
+        if 31000 < current_time < 36000:
+            TASK_1 = FONT.render(f'{all_exercises[4][0]}+{all_exercises[4][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_4_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_4_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_4_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 36000 < current_time < 38000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_4_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_4_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_4_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_5_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_5_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_5_2[0] = ST_OFFSET_ANSWER+35
+
+        if 38000 < current_time < 43000:
+            TASK_1 = FONT.render(f'{all_exercises[5][0]}+{all_exercises[5][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_5_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_5_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_5_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 43000 < current_time < 45000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_5_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_5_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_5_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_6_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_6_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_6_2[0] = ST_OFFSET_ANSWER+35
+
+        if 45000 < current_time < 50000:
+            TASK_1 = FONT.render(f'{all_exercises[6][0]}+{all_exercises[6][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_6_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_6_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_6_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 50000 < current_time < 52000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_6_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_6_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_6_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_7_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_7_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_7_2[0] = ST_OFFSET_ANSWER+35
+
+        if 52000 < current_time < 57000:
+            TASK_1 = FONT.render(f'{all_exercises[7][0]}+{all_exercises[7][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_7_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_7_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_7_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 57000 < current_time < 59000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_7_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_7_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_7_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_8_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_8_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_8_2[0] = ST_OFFSET_ANSWER+35
+
+        if 59000 < current_time < 64000:
+            TASK_1 = FONT.render(f'{all_exercises[8][0]}+{all_exercises[8][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_8_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_8_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_8_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 64000 < current_time < 66000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_8_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_8_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_8_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_9_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_9_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_9_2[0] = ST_OFFSET_ANSWER+35
+
+        if 66000 < current_time < 71000:
+            TASK_1 = FONT.render(f'{all_exercises[9][0]}+{all_exercises[9][1]}', 0, WHITE)
+            POS_TASK_1 = TASK_1.get_rect()
+            POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
+            WIN.blit(TASK_1, POS_TASK_1)
+
+            POS_TUNNEL_0_0[0] -= speed*acceleration
+            POS_TUNNEL_0_1[0] -= speed*acceleration
+            POS_TUNNEL_0_2[0] -= speed*acceleration
+
+            POS_TUNNEL_1_0[0] -= speed*acceleration
+            POS_TUNNEL_1_1[0] -= speed*acceleration
+            POS_TUNNEL_1_2[0] -= speed*acceleration
+
+            POS_TUNNEL_EQUALS_9_0[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_9_1[0] -= speed*acceleration
+            POS_TUNNEL_EQUALS_9_2[0] -= speed*acceleration
+
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_0 == False and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_0 == True and ROAD_LANES == 0 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == False and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == True and ROAD_LANES == 1 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+            if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == False and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                pygame.time.wait(COLLISION_PAUSE)
+                lives -= 1
+            elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == True and ROAD_LANES == 2 and COLLISION == False:
+                COLLISION = True
+                score += score_limit
+
+            # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
+
+        if 71000 < current_time < 73000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_9_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_9_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_9_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+
+    if lives != 0:
+        SCORE_0 = FONT_SCORE.render(f'{score}', 0, WHITE)
+        POS_SCORE_0 = SCORE_0.get_rect(center=(WIDTH//100*92, HEIGHT//100*99+30))
+        WIN.blit(SCORE_0, POS_SCORE_0)
 
     pygame.display.update()
     clock.tick(60)

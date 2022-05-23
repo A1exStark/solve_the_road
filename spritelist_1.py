@@ -14,55 +14,6 @@ FONT_SCORE = pygame.font.Font('fonts/font3.ttf', 16)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 
-MAIN_MENU_SPRITE = pyganim.PygAnimation([
-    ('main_menu1024/main_menu1024_000.jpg', 100),
-    ('main_menu1024/main_menu1024_001.jpg', 100),
-    ('main_menu1024/main_menu1024_002.jpg', 100),
-    ('main_menu1024/main_menu1024_003.jpg', 100),
-    ('main_menu1024/main_menu1024_004.jpg', 100),
-    ('main_menu1024/main_menu1024_005.jpg', 100),
-    ('main_menu1024/main_menu1024_006.jpg', 100),
-    ('main_menu1024/main_menu1024_007.jpg', 100),
-    ('main_menu1024/main_menu1024_008.jpg', 100),
-    ('main_menu1024/main_menu1024_009.jpg', 100),
-    ('main_menu1024/main_menu1024_010.jpg', 100),
-    ('main_menu1024/main_menu1024_011.jpg', 100),
-    ('main_menu1024/main_menu1024_012.jpg', 100),
-    ('main_menu1024/main_menu1024_013.jpg', 100),
-    ('main_menu1024/main_menu1024_014.jpg', 100),
-    ('main_menu1024/main_menu1024_015.jpg', 100),
-    ('main_menu1024/main_menu1024_016.jpg', 100),
-    ('main_menu1024/main_menu1024_017.jpg', 100),
-    ('main_menu1024/main_menu1024_018.jpg', 100),
-    ('main_menu1024/main_menu1024_019.jpg', 100),
-    ('main_menu1024/main_menu1024_020.jpg', 100),
-    ('main_menu1024/main_menu1024_021.jpg', 100),
-    ('main_menu1024/main_menu1024_022.jpg', 100),
-    ('main_menu1024/main_menu1024_023.jpg', 100),
-    ('main_menu1024/main_menu1024_024.jpg', 100),
-    ('main_menu1024/main_menu1024_025.jpg', 100),
-    ('main_menu1024/main_menu1024_026.jpg', 100),
-    ('main_menu1024/main_menu1024_027.jpg', 100),
-    ('main_menu1024/main_menu1024_028.jpg', 100),
-    ('main_menu1024/main_menu1024_029.jpg', 100),
-    ('main_menu1024/main_menu1024_030.jpg', 100),
-    ('main_menu1024/main_menu1024_031.jpg', 100),
-    ('main_menu1024/main_menu1024_032.jpg', 100),
-    ('main_menu1024/main_menu1024_033.jpg', 100),
-    ('main_menu1024/main_menu1024_034.jpg', 100),
-    ('main_menu1024/main_menu1024_035.jpg', 100),
-    ('main_menu1024/main_menu1024_036.jpg', 100),
-    ('main_menu1024/main_menu1024_037.jpg', 100),
-    ('main_menu1024/main_menu1024_038.jpg', 100),
-    ('main_menu1024/main_menu1024_039.jpg', 100),
-    ('main_menu1024/main_menu1024_040.jpg', 100),
-    ('main_menu1024/main_menu1024_041.jpg', 100),
-    ('main_menu1024/main_menu1024_042.jpg', 100),
-    ('main_menu1024/main_menu1024_043.jpg', 100),
-    ('main_menu1024/main_menu1024_044.jpg', 100),
-    ('main_menu1024/main_menu1024_045.jpg', 100)
-])
-
 MAIN_MENU_BACK = pygame.image.load('img/main_menu.png').convert_alpha()
 POS_BACK = MAIN_MENU_BACK.get_rect(center=(WIDTH//2, HEIGHT//10*5))
 MAIN_MENU_BACK.set_alpha(100)
@@ -102,6 +53,18 @@ CAR_2_WIDTH = CAR_2.get_width()
 POS_CAR_2 = CAR_2.get_rect()
 POS_CAR_2.center = WIDTH//100*20, HEIGHT//100*70
 CAR_2_RIGHT = POS_CAR_2[0]+CAR_2_WIDTH
+
+CAR_3 = pygame.image.load('img/lvl1/car_crashed_2.png').convert_alpha()
+CAR_3_WIDTH = CAR_3.get_width()
+POS_CAR_3 = CAR_3.get_rect()
+POS_CAR_3.center = WIDTH//100*20, HEIGHT//100*70
+CAR_3_RIGHT = POS_CAR_3[0]+CAR_3_WIDTH
+
+CAR_4 = pygame.image.load('img/lvl1/car_crashed_3.png').convert_alpha()
+CAR_4_WIDTH = CAR_4.get_width()
+POS_CAR_4 = CAR_4.get_rect()
+POS_CAR_4.center = WIDTH//100*20, HEIGHT//100*70
+CAR_4_RIGHT = POS_CAR_4[0]+CAR_4_WIDTH
 
 
 
