@@ -957,6 +957,15 @@ while run:
             POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
             POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
             POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+        
+        if 73000 < current_time:
+            WIN.blit(MAIN_MENU_BACK, POS_BACK)
+            GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
+            POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
+            GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
+            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+            WIN.blit(GAME_OVER, POS_GAME_OVER)
+            WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
 
 
     if lives != 0:
