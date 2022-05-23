@@ -102,9 +102,9 @@ def draw_all():
     # WIN.blit(ROAD, POS_ROAD)
     WIN.blit(TASK, POS_TASK)
     
-    WIN.blit(HEART, POS_HEART_0)
-    WIN.blit(HEART, POS_HEART_1)
-    WIN.blit(HEART, POS_HEART_2)
+    # WIN.blit(HEART, POS_HEART_0)
+    # WIN.blit(HEART, POS_HEART_1)
+    # WIN.blit(HEART, POS_HEART_2)
 
 
     WIN.blit(SCORE, POS_SCORE)
@@ -154,6 +154,16 @@ while run:
         if (event.type == pygame.KEYDOWN and event.key == K_LEFT) or (event.type == pygame.KEYUP and event.key == K_RIGHT):
             acceleration -= 0.5
 
+    if lives == 3:
+        WIN.blit(HEART, POS_HEART)
+        WIN.blit(HEART, (POS_HEART[0]+60, POS_HEART[1]))
+        WIN.blit(HEART, (POS_HEART[0]+120, POS_HEART[1]))
+    elif lives == 2:
+        WIN.blit(HEART, POS_HEART)
+        WIN.blit(HEART, (POS_HEART[0]+60, POS_HEART[1]))
+    elif lives == 1:
+        WIN.blit(HEART, POS_HEART)
+
     if i <= -WIDTH:
         WIN.blit(ROAD, (i+WIDTH, 0))
         i = 0
@@ -191,6 +201,8 @@ while run:
         POS_TUNNEL_EQUALS_0_0[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_0_1[0] -= speed*acceleration
         POS_TUNNEL_EQUALS_0_2[0] -= speed*acceleration
+
+        
         
     if 8000 < current_time < 10000:
         POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
@@ -204,6 +216,7 @@ while run:
         POS_TUNNEL_EQUALS_1_0[0] = ST_OFFSET_ANSWER+35
         POS_TUNNEL_EQUALS_1_1[0] = ST_OFFSET_ANSWER+35
         POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+35
+        # pygame.time.wait(2000)
 
     if 10000 < current_time < 15000:
         TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)
