@@ -103,7 +103,12 @@ TASK = pygame.image.load('img/lvl1/task.png').convert_alpha()
 POS_TASK = TASK.get_rect(center=(WIDTH//2, HEIGHT//100*8))
 
 HEART = pygame.image.load('img/lvl1/heart.png').convert_alpha()
-POS_HEART = HEART.get_rect(center=(WIDTH//100*4, HEIGHT//100*5))
+POS_HEART_0 = HEART.get_rect()
+POS_HEART_0.center = WIDTH//100*4, HEIGHT//100*5
+POS_HEART_1 = HEART.get_rect()
+POS_HEART_1.center = WIDTH//100*10, HEIGHT//100*5
+POS_HEART_2 = HEART.get_rect()
+POS_HEART_2.center = WIDTH//100*16, HEIGHT//100*5
 
 SCORE = pygame.image.load('img/lvl1/score.png').convert_alpha()
 POS_SCORE = SCORE.get_rect(center=(WIDTH//100*92, HEIGHT//100*99+30))

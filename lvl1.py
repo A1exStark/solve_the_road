@@ -51,47 +51,47 @@ for all_answer in all_answers:
 TUNNEL_EQUALS_0_0 = FONT.render(f'{all_answers[0][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0_0 = TUNNEL_EQUALS_0_0.get_rect()
 POS_TUNNEL_EQUALS_0_0.center = ST_OFFSET_ANSWER, HEIGHT//100*46
-TUNNEL_LOGIC_0_0 = all_answer_flags[0]
+TUNNEL_LOGIC_0_0 = all_answer_flag[0]
 
 TUNNEL_EQUALS_0_1 = FONT.render(f'{all_answers[0][1]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0_1 = TUNNEL_EQUALS_0_1.get_rect()
 POS_TUNNEL_EQUALS_0_1.center = ST_OFFSET_ANSWER, HEIGHT//100*66
-TUNNEL_LOGIC_0_1 = all_answer_flags[1]
+TUNNEL_LOGIC_0_1 = all_answer_flag[1]
 
 TUNNEL_EQUALS_0_2 = FONT.render(f'{all_answers[0][2]}', 0, WHITE)
 POS_TUNNEL_EQUALS_0_2 = TUNNEL_EQUALS_0_2.get_rect()
 POS_TUNNEL_EQUALS_0_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
-TUNNEL_LOGIC_0_2 = all_answer_flags[2]
+TUNNEL_LOGIC_0_2 = all_answer_flag[2]
 
 TUNNEL_EQUALS_1_0 = FONT.render(f'{all_answers[1][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_1_0 = TUNNEL_EQUALS_1_0.get_rect()
 POS_TUNNEL_EQUALS_1_0.center = ST_OFFSET_ANSWER, HEIGHT//100*46
-TUNNEL_LOGIC_1_0 = all_answer_flags[3]
+TUNNEL_LOGIC_1_0 = all_answer_flag[3]
 
 TUNNEL_EQUALS_1_1 = FONT.render(f'{all_answers[1][1]}', 0, WHITE)
 POS_TUNNEL_EQUALS_1_1 = TUNNEL_EQUALS_1_1.get_rect()
 POS_TUNNEL_EQUALS_1_1.center = ST_OFFSET_ANSWER, HEIGHT//100*66
-TUNNEL_LOGIC_1_1 = all_answer_flags[4]
+TUNNEL_LOGIC_1_1 = all_answer_flag[4]
 
 TUNNEL_EQUALS_1_2 = FONT.render(f'{all_answers[1][2]}', 0, WHITE)
 POS_TUNNEL_EQUALS_1_2 = TUNNEL_EQUALS_1_2.get_rect()
 POS_TUNNEL_EQUALS_1_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
-TUNNEL_LOGIC_1_2 = all_answer_flags[5]
+TUNNEL_LOGIC_1_2 = all_answer_flag[5]
 
 TUNNEL_EQUALS_2_0 = FONT.render(f'{all_answers[1][0]}', 0, WHITE)
 POS_TUNNEL_EQUALS_2_0 = TUNNEL_EQUALS_2_0.get_rect()
 POS_TUNNEL_EQUALS_2_0.center = ST_OFFSET_ANSWER, HEIGHT//100*46
-TUNNEL_LOGIC_2_0 = all_answer_flags[6]
+TUNNEL_LOGIC_2_0 = all_answer_flag[6]
 
 TUNNEL_EQUALS_2_1 = FONT.render(f'{all_answers[1][1]}', 0, WHITE)
 POS_TUNNEL_EQUALS_2_1 = TUNNEL_EQUALS_2_1.get_rect()
 POS_TUNNEL_EQUALS_2_1.center = ST_OFFSET_ANSWER, HEIGHT//100*66
-TUNNEL_LOGIC_2_1 = all_answer_flags[7]
+TUNNEL_LOGIC_2_1 = all_answer_flag[7]
 
 TUNNEL_EQUALS_2_2 = FONT.render(f'{all_answers[1][2]}', 0, WHITE)
 POS_TUNNEL_EQUALS_2_2 = TUNNEL_EQUALS_2_2.get_rect()
 POS_TUNNEL_EQUALS_2_2.center = ST_OFFSET_ANSWER, HEIGHT//100*88
-TUNNEL_LOGIC_2_2 = all_answer_flags[8]
+TUNNEL_LOGIC_2_2 = all_answer_flag[8]
 
 def draw_all():
     WIN.blit(BG, POS_BG)
@@ -102,7 +102,11 @@ def draw_all():
     # WIN.blit(ROAD, POS_ROAD)
     WIN.blit(TASK, POS_TASK)
     
-    WIN.blit(HEART, POS_HEART)
+    WIN.blit(HEART, POS_HEART_0)
+    WIN.blit(HEART, POS_HEART_1)
+    WIN.blit(HEART, POS_HEART_2)
+
+
     WIN.blit(SCORE, POS_SCORE)
     WIN.blit(PAUSE, POS_PAUSE)
 
@@ -259,11 +263,6 @@ while run:
 
     
         
-    
-
-    # POS_ROAD[0] -= speed*acceleration
-    # if POS_ROAD[0] < -WIDTH:
-    #     POS_ROAD.center = WIDTH, HEIGHT//2
             
     pygame.display.update()
     clock.tick(60)
