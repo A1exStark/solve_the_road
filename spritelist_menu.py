@@ -71,18 +71,3 @@ RECT_X_2 = 320
 RECT_X_3 = 280
 
 RECT_Y = 90
-
-
-
-#LVL1
-BG = pygame.image.load('img/lvl1/bg.jpg')
-POS_BG = BG.get_rect(center=(WIDTH//2, HEIGHT//2))
-
-MOUNTAINS = pygame.image.load('img/lvl1/mountains.png').convert_alpha()
-POS_MOUNTAINS = MOUNTAINS.get_rect(center=(WIDTH//2, HEIGHT//2))
-LEFT_FOREST = pygame.image.load('img/lvl1/left_forest.png').convert_alpha()
-POS_LEFT_FOREST = LEFT_FOREST.get_rect(center=(WIDTH//2, HEIGHT//2))
-RIGHT_FOREST = pygame.image.load('img/lvl1/right_forest.png').convert_alpha()
-POS_RIGHT_FOREST = RIGHT_FOREST.get_rect(center=(WIDTH//2, HEIGHT//2))
-ROAD = pygame.image.load('img/lvl1/road.png').convert_alpha()
-POS_ROAD = ROAD.get_rect(center=(WIDTH//2, HEIGHT//2))

@@ -16,16 +16,24 @@ exercises = 10
 all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
 
 for exercise in range(10):
-    first_sum = random.randint(0, 90)
+    first_sum = random.randint(0, 98)
     second_sum = random.randint(0, 100-first_sum-1)
     sum_true = first_sum + second_sum
-    sum_fake_1 = sum_true + random.randint(-10, 10)
-    sum_fake_2 = sum_true + random.randint(-10, 10)
+    
+    if sum_true > 89:
+        sum_fake_1 = sum_true + random.randint(-10, 0)
+        sum_fake_2 = sum_true + random.randint(-10, 0)
+    elif sum_true < 11:
+        sum_fake_1 = sum_true + random.randint(0, 10)
+        sum_fake_2 = sum_true + random.randint(0, 10)
+    else:    
+        sum_fake_1 = sum_true + random.randint(-10, 10)
+        sum_fake_2 = sum_true + random.randint(-10, 10)
     # if sum_true == sum_fake_1 or sum_true
     all_exercises.append([first_sum, second_sum, sum_true, sum_fake_1, sum_fake_2])
     all_answers.append([sum_true, sum_fake_1, sum_fake_2])
 
-# print(all_exercises)
+print(all_exercises)
 # print(all_answers)
 
 for all_answer in all_answers:

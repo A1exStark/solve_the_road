@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from spritelist_menu import *
 from osts import *
+import lvl1
 
 
 pygame.display.set_caption('Solve The Road')

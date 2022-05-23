@@ -14,6 +14,10 @@ FONT_SCORE = pygame.font.Font('fonts/font3.ttf', 16)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 
+MAIN_MENU_BACK = pygame.image.load('img/main_menu.png').convert_alpha()
+POS_BACK = MAIN_MENU_BACK.get_rect(center=(WIDTH//2, HEIGHT//10*5))
+MAIN_MENU_BACK.set_alpha(100)
+
 #LVL2
 BG = pygame.image.load('img/lvl2/sunset.png')
 POS_BG = BG.get_rect(center=(WIDTH//2, HEIGHT//2))

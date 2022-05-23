@@ -18,12 +18,6 @@ MAIN_MENU_BACK = pygame.image.load('img/main_menu.png').convert_alpha()
 POS_BACK = MAIN_MENU_BACK.get_rect(center=(WIDTH//2, HEIGHT//10*5))
 MAIN_MENU_BACK.set_alpha(100)
 
-RECT_X_1 = 250
-RECT_X_2 = 320
-RECT_X_3 = 280
-
-RECT_Y = 90
-
 
 
 #LVL1
