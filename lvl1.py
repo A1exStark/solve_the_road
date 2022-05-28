@@ -12,6 +12,8 @@ pygame.display.set_caption('LVL1')
 clock = pygame.time.Clock()
 i = 0
 exercises = 10
+FPS = 60
+NEW_TIMER = 0
 
 all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
 
@@ -305,10 +307,21 @@ score = 0
 score_limit = 1
 COLLISION = False
 COLLISION_PAUSE = 1000
+game_is_on = False
+current_time = 0
 pressed = pygame.key.get_pressed()
 while run:
-    current_time = pygame.time.get_ticks()
+    
+    if current_time == 0:
+        current_time = 0
+        NEW_TIMER = 0
+    else:
+        current_time = pygame.time.get_ticks()
+        NEW_TIMER += 17
 
+    
+    print(f'{current_time} {NEW_TIMER}')
+    
     draw_all()
     for event in pygame.event.get():
         if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
@@ -318,6 +331,14 @@ while run:
                 ROAD_LANES += 1         
             if event.key == pygame.K_UP:
                 ROAD_LANES -= 1
+            if event.key == pygame.K_KP0:
+                game_is_on = True
+                lives = 3
+                current_time = pygame.time.get_ticks()
+            if event.key == pygame.K_KP1:
+                game_is_on = False
+                current_time = 0
+                NEW_TIMER = 0
         
         if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
             acceleration += 0.5
@@ -353,8 +374,27 @@ while run:
     elif ROAD_LANES < 0:
         ROAD_LANES = 0
 
-    if lives != 0:    
-        if 3000 < current_time < 8000:
+    if lives != 0:
+        if 0 < NEW_TIMER < 3000:
+            COLLISION = False
+
+            POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
+            POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
+            POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
+
+            POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
+            POS_TUNNEL_0_2[0] = ST_OFFSET_TUNNEL_0+33
+
+            POS_TUNNEL_1_0[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
+            POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
+
+            POS_TUNNEL_EQUALS_0_0[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_0_1[0] = ST_OFFSET_ANSWER+35
+            POS_TUNNEL_EQUALS_0_2[0] = ST_OFFSET_ANSWER+35
+            
+        if 3000 < NEW_TIMER < 8000:
             TASK_1 = FONT.render(f'{all_exercises[0][0]}+{all_exercises[0][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -376,6 +416,9 @@ while run:
                 COLLISION = True
                 pygame.time.wait(COLLISION_PAUSE)
                 lives -= 1
+                POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
+                POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
+                POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
             elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_0 == True and ROAD_LANES == 0 and COLLISION == False:
                 COLLISION = True
                 score += score_limit
@@ -383,6 +426,9 @@ while run:
                 COLLISION = True
                 pygame.time.wait(COLLISION_PAUSE)
                 lives -= 1
+                POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
+                POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
+                POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
             elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == True and ROAD_LANES == 1 and COLLISION == False:
                 COLLISION = True
                 score += score_limit
@@ -390,13 +436,16 @@ while run:
                 COLLISION = True
                 pygame.time.wait(COLLISION_PAUSE)
                 lives -= 1
+                POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
+                POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
+                POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
             elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == True and ROAD_LANES == 2 and COLLISION == False:
                 COLLISION = True
                 score += score_limit
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 8000 < current_time < 10000:
+        if 8000 < NEW_TIMER < 10000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
@@ -415,7 +464,7 @@ while run:
             POS_TUNNEL_EQUALS_1_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_1_2[0] = ST_OFFSET_ANSWER+35
 
-        if 10000 < current_time < 15000:
+        if 10000 < NEW_TIMER < 15000:
             TASK_1 = FONT.render(f'{all_exercises[1][0]}+{all_exercises[1][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -457,7 +506,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 15000 < current_time < 17000:
+        if 15000 < NEW_TIMER < 17000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_1_0[0] = -WIDTH
@@ -476,7 +525,7 @@ while run:
             POS_TUNNEL_EQUALS_2_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_2_2[0] = ST_OFFSET_ANSWER+35
 
-        if 17000 < current_time < 22000:
+        if 17000 < NEW_TIMER < 22000:
             TASK_1 = FONT.render(f'{all_exercises[2][0]}+{all_exercises[2][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -518,7 +567,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 22000 < current_time < 24000:
+        if 22000 < NEW_TIMER < 24000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_2_0[0] = -WIDTH
@@ -537,7 +586,7 @@ while run:
             POS_TUNNEL_EQUALS_3_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_3_2[0] = ST_OFFSET_ANSWER+35
 
-        if 24000 < current_time < 29000:
+        if 24000 < NEW_TIMER < 29000:
             TASK_1 = FONT.render(f'{all_exercises[3][0]}+{all_exercises[3][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -579,7 +628,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 29000 < current_time < 31000:
+        if 29000 < NEW_TIMER < 31000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_3_0[0] = -WIDTH
@@ -598,7 +647,7 @@ while run:
             POS_TUNNEL_EQUALS_4_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_4_2[0] = ST_OFFSET_ANSWER+35
 
-        if 31000 < current_time < 36000:
+        if 31000 < NEW_TIMER < 36000:
             TASK_1 = FONT.render(f'{all_exercises[4][0]}+{all_exercises[4][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -640,7 +689,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 36000 < current_time < 38000:
+        if 36000 < NEW_TIMER < 38000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_4_0[0] = -WIDTH
@@ -659,7 +708,7 @@ while run:
             POS_TUNNEL_EQUALS_5_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_5_2[0] = ST_OFFSET_ANSWER+35
 
-        if 38000 < current_time < 43000:
+        if 38000 < NEW_TIMER < 43000:
             TASK_1 = FONT.render(f'{all_exercises[5][0]}+{all_exercises[5][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -701,7 +750,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 43000 < current_time < 45000:
+        if 43000 < NEW_TIMER < 45000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_5_0[0] = -WIDTH
@@ -720,7 +769,7 @@ while run:
             POS_TUNNEL_EQUALS_6_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_6_2[0] = ST_OFFSET_ANSWER+35
 
-        if 45000 < current_time < 50000:
+        if 45000 < NEW_TIMER < 50000:
             TASK_1 = FONT.render(f'{all_exercises[6][0]}+{all_exercises[6][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -762,7 +811,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 50000 < current_time < 52000:
+        if 50000 < NEW_TIMER < 52000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_6_0[0] = -WIDTH
@@ -781,7 +830,7 @@ while run:
             POS_TUNNEL_EQUALS_7_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_7_2[0] = ST_OFFSET_ANSWER+35
 
-        if 52000 < current_time < 57000:
+        if 52000 < NEW_TIMER < 57000:
             TASK_1 = FONT.render(f'{all_exercises[7][0]}+{all_exercises[7][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -823,7 +872,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 57000 < current_time < 59000:
+        if 57000 < NEW_TIMER < 59000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_7_0[0] = -WIDTH
@@ -842,7 +891,7 @@ while run:
             POS_TUNNEL_EQUALS_8_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_8_2[0] = ST_OFFSET_ANSWER+35
 
-        if 59000 < current_time < 64000:
+        if 59000 < NEW_TIMER < 64000:
             TASK_1 = FONT.render(f'{all_exercises[8][0]}+{all_exercises[8][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -884,7 +933,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 64000 < current_time < 66000:
+        if 64000 < NEW_TIMER < 66000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_8_0[0] = -WIDTH
@@ -903,7 +952,7 @@ while run:
             POS_TUNNEL_EQUALS_9_1[0] = ST_OFFSET_ANSWER+35
             POS_TUNNEL_EQUALS_9_2[0] = ST_OFFSET_ANSWER+35
 
-        if 66000 < current_time < 71000:
+        if 66000 < NEW_TIMER < 71000:
             TASK_1 = FONT.render(f'{all_exercises[9][0]}+{all_exercises[9][1]}', 0, WHITE)
             POS_TASK_1 = TASK_1.get_rect()
             POS_TASK_1.center = (WIDTH//2, HEIGHT//100*8)
@@ -945,7 +994,7 @@ while run:
 
             # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
 
-        if 71000 < current_time < 73000:
+        if 71000 < NEW_TIMER < 73000:
             COLLISION = False
 
             POS_TUNNEL_EQUALS_9_0[0] = -WIDTH
@@ -960,7 +1009,7 @@ while run:
             POS_TUNNEL_1_1[0] = ST_OFFSET_TUNNEL_1
             POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
             
-        if 73000 < current_time:
+        if 73000 < NEW_TIMER:
             WIN.blit(MAIN_MENU_BACK, POS_BACK)
             GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
             POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
@@ -975,6 +1024,12 @@ while run:
         POS_SCORE_0 = SCORE_0.get_rect(center=(WIDTH//100*92, HEIGHT//100*99+30))
         WIN.blit(SCORE_0, POS_SCORE_0)
 
-    pygame.display.update()
-    clock.tick(60)
-
+    if game_is_on:
+        pygame.display.flip()
+    else:
+        NEW_TIMER = 0
+        pass
+    
+    clock.tick(FPS)
+    
+    
