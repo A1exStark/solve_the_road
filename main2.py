@@ -336,12 +336,13 @@ def lvl1():
 
     while run_lvl_1:
 
-        if current_time == 0:
-            current_time = 0
-            NEW_TIMER = 0
-        else:
+        if game_is_on:
             current_time = pygame.time.get_ticks()
             NEW_TIMER += 17
+        else:
+            current_time = 0
+            NEW_TIMER = 0
+        
 
         # print(f'{current_time} {NEW_TIMER}')
 
@@ -356,11 +357,11 @@ def lvl1():
                 if event.key == pygame.K_UP:
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
-                    # game_is_on = True
+                    game_is_on = True
                     lives = 3
-                    current_time = pygame.time.get_ticks()
+                    # current_time = pygame.time.get_ticks()
                 if event.key == pygame.K_9:
-                    # game_is_on = False
+                    game_is_on = False
                     NEW_TIMER = 0
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
@@ -1063,7 +1064,6 @@ def lvl1():
             pygame.display.flip()
         else:
             NEW_TIMER = 0
-            pass
 
         clock.tick(FPS)
 
