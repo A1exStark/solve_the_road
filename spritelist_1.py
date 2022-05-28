@@ -13,6 +13,7 @@ FONT_SCORE = pygame.font.Font('fonts/font3.ttf', 16)
 
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
+BLACK = (0, 0, 0)
 
 MAIN_MENU_BACK = pygame.image.load('img/main_menu.png').convert_alpha()
 POS_BACK = MAIN_MENU_BACK.get_rect(center=(WIDTH//2, HEIGHT//10*5))
