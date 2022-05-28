@@ -21,10 +21,10 @@ POS_START = MAIN_MENU_START.get_rect(center=(WIDTH//2, HEIGHT//10*4))
 POS_OPTIONS = MAIN_MENU_OPTIONS.get_rect(center=(WIDTH//2, HEIGHT//10*5))
 POS_EXIT = MAIN_MENU_EXIT.get_rect(center=(WIDTH//2, HEIGHT//10*6))
 
-POS_MAIN_MENU_LVL_1 = MAIN_MENU_LVL_1.get_rect(center=(WIDTH//2-50, HEIGHT//10*4))
-POS_MAIN_MENU_LVL_2 = MAIN_MENU_LVL_2.get_rect(center=(WIDTH//2+50, HEIGHT//10*4))
-POS_MAIN_MENU_LVL_3 = MAIN_MENU_LVL_3.get_rect(center=(WIDTH//2-50, HEIGHT//10*6))
-POS_MAIN_MENU_LVL_4 = MAIN_MENU_LVL_4.get_rect(center=(WIDTH//2+50, HEIGHT//10*6))
+POS_MAIN_MENU_LVL_1 = MAIN_MENU_LVL_1.get_rect(center=(WIDTH//2, HEIGHT//100*40))
+POS_MAIN_MENU_LVL_2 = MAIN_MENU_LVL_2.get_rect(center=(WIDTH//2, HEIGHT//100*50))
+POS_MAIN_MENU_LVL_3 = MAIN_MENU_LVL_3.get_rect(center=(WIDTH//2, HEIGHT//100*60))
+POS_MAIN_MENU_LVL_4 = MAIN_MENU_LVL_4.get_rect(center=(WIDTH//2, HEIGHT//100*70))
 
 menu_main_page = True
 menu_lvl_choose_page = False
@@ -1092,33 +1092,48 @@ while run:
     draw_menu()
 
     for event in pygame.event.get():
-        if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE) or (counter == 2 and event.type == KEYDOWN and event.key == K_RETURN):
+        if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE and menu_main_page) or (counter == 2 and event.type == KEYDOWN and event.key == K_RETURN and menu_main_page):
             run = False
-        if event.type == KEYDOWN and event.key == K_DOWN:
+        if event.type == KEYDOWN and event.key == K_ESCAPE and menu_lvl_choose_page:
+            menu_lvl_choose_page = False
+            menu_main_page = True
+        if event.type == KEYDOWN:
             MAIN_MENU_SELECT_SONUD.play()
-            counter += 1
-        if event.type == KEYDOWN and event.key == K_UP:
-            MAIN_MENU_SELECT_SONUD.play()
-            counter -= 1
-        if counter == 0 and event.type == KEYDOWN and event.key == K_RETURN:
+            if event.key == K_DOWN :
+                counter += 1
+            if event.key == K_UP:
+                counter -= 1
+
+        if (counter == 0 and event.type == KEYDOWN and event.key == K_RETURN and menu_main_page) or (counter == 0 and event.type == KEYDOWN and event.key == K_RETURN and menu_lvl_choose_page):
             lvl1()
         if counter == 1 and event.type == KEYDOWN and event.key == K_RETURN:
             menu_lvl_choose_page = True
             menu_main_page = False
 
     if counter == 0 and menu_main_page:
-        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_1//2,
-                                      HEIGHT//10*4-RECT_Y//2, RECT_X_1, RECT_Y), 7)
+        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_1//2, HEIGHT//10*4-RECT_Y//2, RECT_X_1, RECT_Y), 7)
     elif counter == 1 and menu_main_page:
-        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_2//2,
-                                      HEIGHT//2-RECT_Y//2, RECT_X_2, RECT_Y), 7)
+        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_2//2, HEIGHT//2-RECT_Y//2, RECT_X_2, RECT_Y), 7)
     elif counter == 2 and menu_main_page:
-        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_3//2,
-                                      HEIGHT//10*6-RECT_Y//2, RECT_X_3, RECT_Y), 7)
-
+        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_3//2, HEIGHT//10*6-RECT_Y//2, RECT_X_3, RECT_Y), 7)
     elif counter > 2 and menu_main_page:
         counter = 0
     elif counter < 0 and menu_main_page:
         counter = 2
+
+    if counter == 0 and menu_lvl_choose_page:
+        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_1//2, HEIGHT//100*40-RECT_Y//2, RECT_X_1, RECT_Y), 7)
+    elif counter == 1 and menu_lvl_choose_page:
+        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_2//2, HEIGHT//100*50-RECT_Y//2, RECT_X_2, RECT_Y), 7)
+    elif counter == 2 and menu_lvl_choose_page:
+        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_3//2, HEIGHT//100*60-RECT_Y//2, RECT_X_3, RECT_Y), 7)
+    elif counter == 3 and menu_lvl_choose_page:
+        pygame.draw.rect(WIN, WHITE, (WIDTH//2-RECT_X_4//2, HEIGHT//100*70-RECT_Y//2, RECT_X_4, RECT_Y), 7)
+    elif counter > 3 and menu_lvl_choose_page:
+        counter = 0
+    elif counter < 0 and menu_lvl_choose_page:
+        counter = 3
+
+    
 
     pygame.display.update()
