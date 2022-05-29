@@ -6,7 +6,7 @@ import random
 import math
 
 
-pygame.display.set_caption('Solve The Road')
+pygame.display.set_caption('MATH RIDER')
 
 MAIN_MENU_START = FONT.render('START', 0, WHITE)
 MAIN_MENU_OPTIONS = FONT.render('УРОВЕНЬ', 0, WHITE)
