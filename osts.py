@@ -15,4 +15,8 @@ MAIN_MENU_SELECTED_SONUD = pygame.mixer.Sound('ost/sfx_menu_selected.wav')
 MAIN_MENU_SELECTED_SONUD.set_volume(0.1)
 
 LVL_START_SOUND = pygame.mixer.Sound('ost/lvl_start.wav')
-LVL_START_SOUND.set_volume(0.3)
+LVL_START_SOUND.set_volume(0.5)
+
+
+LVL_COMPLETE_SOUND = pygame.mixer.Sound('ost/lvl_complete.wav')
+LVL_COMPLETE_SOUND.set_volume(0.3)

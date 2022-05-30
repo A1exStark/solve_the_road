@@ -28,13 +28,15 @@ POS_MAIN_MENU_LVL_4 = MAIN_MENU_LVL_4.get_rect(center=(WIDTH//2, HEIGHT//100*70)
 menu_main_page = True
 menu_lvl_choose_page = False
 
-
-def lvl1():
+def lvl1_music():
     LVL_START_SOUND.play()
-    pygame.mixer.music.load('ost/Nightcall.ogg')
+    pygame.mixer.music.load('ost/lvl1.ogg')
     pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
 
+def lvl1():
+    
+    lvl1_music()
 
     run_lvl_1 = True
     clock = pygame.time.Clock()
@@ -1050,6 +1052,9 @@ def lvl1():
                 POS_TUNNEL_1_2[0] = ST_OFFSET_TUNNEL_1
 
             if 73000 < NEW_TIMER:
+                if 73001 < NEW_TIMER < 73018:
+                    pygame.mixer.music.stop()
+                    LVL_COMPLETE_SOUND.play()
                 WIN.blit(MAIN_MENU_BACK, POS_BACK)
                 GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
                 POS_GAME_OVER = GAME_OVER.get_rect(
