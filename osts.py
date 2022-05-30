@@ -23,3 +23,5 @@ GATE_SOUND.set_volume(.3)
 
 LVL_COMPLETE_SOUND = pygame.mixer.Sound('ost/lvl_complete.wav')
 LVL_COMPLETE_SOUND.set_volume(.3)
+GAME_OVER_SOUND = pygame.mixer.Sound('ost/game_over.wav')
+GAME_OVER_SOUND.set_volume(.3)

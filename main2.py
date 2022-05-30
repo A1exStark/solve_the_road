@@ -37,6 +37,13 @@ def lvl_start_sound():
     LVL_START_SOUND.play()
 def gate_sound():
     GATE_SOUND.play()
+def lvl_complete_sound():
+    pygame.mixer.music.stop()
+    LVL_COMPLETE_SOUND.play()
+def game_over_sound():
+    pygame.mixer.music.stop()
+    GAME_OVER_SOUND.play()
+    
 
 def main_menu_music():
     pygame.mixer.music.stop()
@@ -89,10 +96,11 @@ def lvl1():
     score_limit = 1
     COLLISION = False
     COLLISION_PAUSE = 1000
-    game_is_on = True
+    game_is_on = True  
     current_time = 0
     speed = 8
     acceleration = 1.0
+    GAME_OVER_SOUND_FLAG = False
     pressed = pygame.key.get_pressed()
 
     all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
@@ -309,36 +317,22 @@ def lvl1():
             WIN.blit(TUNNEL_0, POS_TUNNEL_0_1)
             WIN.blit(TUNNEL_0, POS_TUNNEL_0_2)
 
-        ostatok = current_time % 10
+        ostatok = current_time // 250 % 2
         
-        def car_at_0():
-            WIN.blit(CAR, POS_CAR)
-        def car_at_1():
-            WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
-
         if lives == 3 and ostatok == 0:
-            car_at_0()
+            WIN.blit(CAR, POS_CAR)
         elif lives == 3 and ostatok != 0:
-            car_at_1()
+            WIN.blit(CAR_W, (POS_CAR_W[0], POS_CAR_W[1]+2))
         if lives == 2 and ostatok == 0:
-            car_at_0()
+            WIN.blit(CAR_2, POS_CAR_2)
         elif lives == 2 and ostatok != 0:
-            car_at_1()
+            WIN.blit(CAR_2_W, (POS_CAR_2_W[0], POS_CAR_2_W[1]+2))
         if lives == 1 and ostatok == 0:
-            car_at_0()
+            WIN.blit(CAR_3, POS_CAR_3)
         elif lives == 1 and ostatok != 0:
-            car_at_1()
-        elif lives == 0:
-            # WIN.blit(CAR_4, POS_CAR_4)
-            WIN.blit(MAIN_MENU_BACK, POS_BACK)
-            GAME_OVER = FONT.render(f'GAME OVER', 0, WHITE)
-            POS_GAME_OVER = GAME_OVER.get_rect(
-                center=(WIDTH//2, HEIGHT//2-100))
-            GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                center=(WIDTH//2, HEIGHT//2))
-            WIN.blit(GAME_OVER, POS_GAME_OVER)
-            WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+            WIN.blit(CAR_3_W, (POS_CAR_3_W[0], POS_CAR_3_W[1]+2))
+        if lives == 0:
+            WIN.blit(CAR_4, POS_CAR_4)
 
         if lives != 0:
             WIN.blit(TUNNEL_1, POS_TUNNEL_1_0)
@@ -440,12 +434,30 @@ def lvl1():
 
         if ROAD_LANES == 0:
             POS_CAR[1] = HEIGHT//100*40
+            POS_CAR_W[1] = HEIGHT//100*40
+            POS_CAR_2[1] = HEIGHT//100*40
+            POS_CAR_2_W[1] = HEIGHT//100*40
+            POS_CAR_3[1] = HEIGHT//100*40
+            POS_CAR_3_W[1] = HEIGHT//100*40
+            POS_CAR_4[1] = HEIGHT//100*40
             # print(ROAD_LANES)
         elif ROAD_LANES == 1:
             POS_CAR[1] = HEIGHT//100*60
+            POS_CAR_W[1] = HEIGHT//100*60
+            POS_CAR_2[1] = HEIGHT//100*60
+            POS_CAR_2_W[1] = HEIGHT//100*60
+            POS_CAR_3[1] = HEIGHT//100*60
+            POS_CAR_3_W[1] = HEIGHT//100*60
+            POS_CAR_4[1] = HEIGHT//100*60
             # print(ROAD_LANES)
         elif ROAD_LANES == 2:
             POS_CAR[1] = HEIGHT//100*80
+            POS_CAR_W[1] = HEIGHT//100*80
+            POS_CAR_2[1] = HEIGHT//100*80
+            POS_CAR_2_W[1] = HEIGHT//100*80
+            POS_CAR_3[1] = HEIGHT//100*80
+            POS_CAR_3_W[1] = HEIGHT//100*80
+            POS_CAR_4[1] = HEIGHT//100*80
             # print(ROAD_LANES)
         elif ROAD_LANES > 2:
             ROAD_LANES = 2
@@ -493,8 +505,9 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                     POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
                     POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
                     POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
@@ -504,8 +517,9 @@ def lvl1():
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                     POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
                     POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
                     POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
@@ -515,8 +529,9 @@ def lvl1():
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                     POS_TUNNEL_EQUALS_0_0[0] = -WIDTH
                     POS_TUNNEL_EQUALS_0_1[0] = -WIDTH
                     POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
@@ -567,24 +582,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -632,24 +650,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -697,24 +718,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -762,24 +786,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -827,24 +854,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -892,24 +922,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -957,24 +990,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -1022,24 +1058,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -1087,24 +1126,27 @@ def lvl1():
 
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_0 == False and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
-                    pygame.time.wait(COLLISION_PAUSE)
                     lives -= 1
+                    if lives > 0:
+                        pygame.time.wait(COLLISION_PAUSE)
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
                     gate_sound()
@@ -1129,8 +1171,7 @@ def lvl1():
 
             if 73000 < NEW_TIMER:
                 if 73001 < NEW_TIMER < 73018:
-                    pygame.mixer.music.stop()
-                    LVL_COMPLETE_SOUND.play()
+                    lvl_complete_sound()
                 WIN.blit(MAIN_MENU_BACK, POS_BACK)
                 GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
                 POS_GAME_OVER = GAME_OVER.get_rect(
@@ -1146,6 +1187,19 @@ def lvl1():
             POS_SCORE_0 = SCORE_0.get_rect(
                 center=(WIDTH//100*92, HEIGHT//100*99+30))
             WIN.blit(SCORE_0, POS_SCORE_0)
+        else:
+            if GAME_OVER_SOUND_FLAG == False:
+                game_over_sound()
+                GAME_OVER_SOUND_FLAG = True
+            WIN.blit(MAIN_MENU_BACK, POS_BACK)
+            GAME_OVER = FONT.render(f'GAME OVER', 0, WHITE)
+            POS_GAME_OVER = GAME_OVER.get_rect(
+                center=(WIDTH//2, HEIGHT//2-100))
+            GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
+            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
+                center=(WIDTH//2, HEIGHT//2))
+            WIN.blit(GAME_OVER, POS_GAME_OVER)
+            WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
 
         if game_is_on:
             pygame.display.flip()

@@ -96,11 +96,23 @@ POS_CAR = CAR.get_rect()
 POS_CAR.center = WIDTH//100*20, HEIGHT//100*70
 CAR_RIGHT = POS_CAR[0]+CAR_WIDTH
 
+CAR_W = pygame.image.load('img/lvl1/car_w.png').convert_alpha()
+CAR_W_WIDTH = CAR_W.get_width()
+POS_CAR_W = CAR_W.get_rect()
+POS_CAR_W.center = WIDTH//100*20, HEIGHT//100*70
+CAR_W_RIGHT = POS_CAR_W[0]+CAR_W_WIDTH
+
 CAR_2 = pygame.image.load('img/lvl1/car_crashed_1.png').convert_alpha()
 CAR_2_WIDTH = CAR_2.get_width()
 POS_CAR_2 = CAR_2.get_rect()
 POS_CAR_2.center = WIDTH//100*20, HEIGHT//100*70
 CAR_2_RIGHT = POS_CAR_2[0]+CAR_2_WIDTH
+
+CAR_2_W = pygame.image.load('img/lvl1/car_crashed_1_w.png').convert_alpha()
+CAR_2_W_WIDTH = CAR_2_W.get_width()
+POS_CAR_2_W = CAR_2_W.get_rect()
+POS_CAR_2_W.center = WIDTH//100*20, HEIGHT//100*70
+CAR_2_W_RIGHT = POS_CAR_2_W[0]+CAR_2_W_WIDTH
 
 CAR_3 = pygame.image.load('img/lvl1/car_crashed_2.png').convert_alpha()
 CAR_3_WIDTH = CAR_3.get_width()
@@ -108,11 +120,19 @@ POS_CAR_3 = CAR_3.get_rect()
 POS_CAR_3.center = WIDTH//100*20, HEIGHT//100*70
 CAR_3_RIGHT = POS_CAR_3[0]+CAR_3_WIDTH
 
+CAR_3_W = pygame.image.load('img/lvl1/car_crashed_2_w.png').convert_alpha()
+CAR_3_W_WIDTH = CAR_3_W.get_width()
+POS_CAR_3_W = CAR_3_W.get_rect()
+POS_CAR_3_W.center = WIDTH//100*20, HEIGHT//100*70
+CAR_3_W_RIGHT = POS_CAR_3_W[0]+CAR_3_W_WIDTH
+
 CAR_4 = pygame.image.load('img/lvl1/car_crashed_3.png').convert_alpha()
 CAR_4_WIDTH = CAR_4.get_width()
 POS_CAR_4 = CAR_4.get_rect()
 POS_CAR_4.center = WIDTH//100*20, HEIGHT//100*70
 CAR_4_RIGHT = POS_CAR_4[0]+CAR_4_WIDTH
+
+
 
 
 #UI
