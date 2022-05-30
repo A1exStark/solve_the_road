@@ -28,7 +28,15 @@ POS_MAIN_MENU_LVL_4 = MAIN_MENU_LVL_4.get_rect(center=(WIDTH//2, HEIGHT//100*70)
 menu_main_page = True
 menu_lvl_choose_page = False
 
+
+def main_menu_music():
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load('ost/main_menu.ogg')
+    pygame.mixer.music.set_volume(0.2)
+    pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
+
 def lvl1_music():
+    pygame.mixer.music.stop()
     LVL_START_SOUND.play()
     pygame.mixer.music.load('ost/lvl1.ogg')
     pygame.mixer.music.set_volume(0.2)
@@ -364,10 +372,11 @@ def lvl1():
         draw_all()
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-                pygame.mixer.music.stop()
+                pygame.mixer.music.stop()                
                 menu_selected_sound()
                 run_lvl_1 = False
                 NEW_TIMER = 0
+                main_menu_music()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     ROAD_LANES += 1
@@ -1137,6 +1146,10 @@ def draw_menu():
 
 run = True
 counter = 0
+
+if run:
+    main_menu_music()
+    
 while run:
 
     draw_menu()
