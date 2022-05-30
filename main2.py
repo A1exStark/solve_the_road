@@ -29,6 +29,15 @@ menu_main_page = True
 menu_lvl_choose_page = False
 
 
+def menu_select_sound():
+    MAIN_MENU_SELECT_SONUD.play()
+def menu_selected_sound():
+    MAIN_MENU_SELECTED_SONUD.play()
+def lvl_start_sound():
+    LVL_START_SOUND.play()
+def gate_sound():
+    GATE_SOUND.play()
+
 def main_menu_music():
     pygame.mixer.music.stop()
     pygame.mixer.music.load('ost/main_menu.ogg')
@@ -37,17 +46,31 @@ def main_menu_music():
 
 def lvl1_music():
     pygame.mixer.music.stop()
-    LVL_START_SOUND.play()
+    lvl_start_sound()
     pygame.mixer.music.load('ost/lvl1.ogg')
-    pygame.mixer.music.set_volume(0.2)
+    pygame.mixer.music.set_volume(0.18)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
 
-def menu_select_sound():
-    MAIN_MENU_SELECT_SONUD.play()
-def menu_selected_sound():
-    MAIN_MENU_SELECTED_SONUD.play()
-def gate_sound():
-    GATE_SOUND.play()
+def lvl2_music():
+    pygame.mixer.music.stop()
+    lvl_start_sound()
+    pygame.mixer.music.load('ost/lvl2.ogg')
+    pygame.mixer.music.set_volume(0.15)
+    pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
+    
+def lvl3_music():
+    pygame.mixer.music.stop()
+    lvl_start_sound()
+    pygame.mixer.music.load('ost/lvl3.ogg')
+    pygame.mixer.music.set_volume(0.18)
+    pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300) 
+
+def lvl4_music():
+    pygame.mixer.music.stop()
+    lvl_start_sound()
+    pygame.mixer.music.load('ost/lvl4.ogg')
+    pygame.mixer.music.set_volume(0.15)
+    pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
     
 
 def lvl1():
@@ -287,19 +310,24 @@ def lvl1():
             WIN.blit(TUNNEL_0, POS_TUNNEL_0_2)
 
         ostatok = current_time % 10
+        
+        def car_at_0():
+            WIN.blit(CAR, POS_CAR)
+        def car_at_1():
+            WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
 
         if lives == 3 and ostatok == 0:
-            WIN.blit(CAR, POS_CAR)
+            car_at_0()
         elif lives == 3 and ostatok != 0:
-            WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
+            car_at_1()
         if lives == 2 and ostatok == 0:
-            WIN.blit(CAR, POS_CAR)
+            car_at_0()
         elif lives == 2 and ostatok != 0:
-            WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
+            car_at_1()
         if lives == 1 and ostatok == 0:
-            WIN.blit(CAR, POS_CAR)
+            car_at_0()
         elif lives == 1 and ostatok != 0:
-            WIN.blit(CAR, (POS_CAR[0], POS_CAR[1]+2))
+            car_at_1()
         elif lives == 0:
             # WIN.blit(CAR_4, POS_CAR_4)
             WIN.blit(MAIN_MENU_BACK, POS_BACK)
