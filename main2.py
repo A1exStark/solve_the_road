@@ -1,10 +1,9 @@
 import pygame
 from pygame.locals import *
-from spritelist_menu_2 import *
-from osts import *
 import random
 import math
-
+from spritelist_menu_2 import *
+from osts import *
 
 pygame.display.set_caption('MATH RIDER')
 
@@ -31,6 +30,11 @@ menu_lvl_choose_page = False
 
 
 def lvl1():
+    pygame.mixer.music.load('ost/Nightcall.ogg')
+    pygame.mixer.music.set_volume(0.2)
+    pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
+
+
     run_lvl_1 = True
     clock = pygame.time.Clock()
     i = 0
@@ -349,6 +353,7 @@ def lvl1():
         draw_all()
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+                pygame.mixer.music.stop()
                 run_lvl_1 = False
                 NEW_TIMER = 0
             if event.type == pygame.KEYDOWN:
