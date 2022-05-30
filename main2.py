@@ -30,6 +30,7 @@ menu_lvl_choose_page = False
 
 
 def lvl1():
+    LVL_START_SOUND.play()
     pygame.mixer.music.load('ost/Nightcall.ogg')
     pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
@@ -1110,6 +1111,7 @@ while run:
                 counter -= 1
 
         if (counter == 0 and event.type == KEYDOWN and event.key == K_RETURN and menu_main_page) or (counter == 0 and event.type == KEYDOWN and event.key == K_RETURN and menu_lvl_choose_page):
+            MAIN_MENU_SELECTED_SONUD.play()
             lvl1()
         if counter == 1 and event.type == KEYDOWN and event.key == K_RETURN:
             menu_lvl_choose_page = True

@@ -11,3 +11,8 @@ pygame.font.init()
 
 MAIN_MENU_SELECT_SONUD = pygame.mixer.Sound('ost/sfx_menu_select.wav')
 MAIN_MENU_SELECT_SONUD.set_volume(0.1)
+MAIN_MENU_SELECTED_SONUD = pygame.mixer.Sound('ost/sfx_menu_selected.wav')
+MAIN_MENU_SELECTED_SONUD.set_volume(0.1)
+
+LVL_START_SOUND = pygame.mixer.Sound('ost/lvl_start.wav')
+LVL_START_SOUND.set_volume(0.3)
