@@ -20,8 +20,17 @@ LVL_START_SOUND.set_volume(.5)
 GATE_SOUND = pygame.mixer.Sound('ost/gate.wav')
 GATE_SOUND.set_volume(.3)
 
+CAR_HIT_SOUND = pygame.mixer.Sound('ost/car_hit.wav')
+CAR_HIT_SOUND.set_volume(.3)
+
+CAR_HIT_SOUND_2 = pygame.mixer.Sound('ost/car_hit_2.wav')
+CAR_HIT_SOUND_2.set_volume(.5)
+
 
 LVL_COMPLETE_SOUND = pygame.mixer.Sound('ost/lvl_complete.wav')
 LVL_COMPLETE_SOUND.set_volume(.3)
 GAME_OVER_SOUND = pygame.mixer.Sound('ost/game_over.wav')
 GAME_OVER_SOUND.set_volume(.3)
+
+
+
