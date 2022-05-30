@@ -33,6 +33,10 @@ def lvl1_music():
     pygame.mixer.music.load('ost/lvl1.ogg')
     pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
+    
+def gate_sound():
+    GATE_SOUND.play()
+    
 
 def lvl1():
     
@@ -454,6 +458,7 @@ def lvl1():
                     POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -464,6 +469,7 @@ def lvl1():
                     POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -474,6 +480,7 @@ def lvl1():
                     POS_TUNNEL_EQUALS_0_2[0] = -WIDTH
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_0_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -522,6 +529,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -529,6 +537,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -536,6 +545,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_1_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -584,6 +594,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -591,6 +602,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -598,6 +610,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_2_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -646,6 +659,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -653,6 +667,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -660,6 +675,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_3_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -708,6 +724,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -715,6 +732,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -722,6 +740,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_4_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -770,6 +789,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -777,6 +797,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -784,6 +805,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_5_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -832,6 +854,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -839,6 +862,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -846,6 +870,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_6_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -894,6 +919,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -901,6 +927,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -908,6 +935,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_7_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -956,6 +984,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -963,6 +992,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -970,6 +1000,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_8_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
@@ -1018,6 +1049,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_0[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_0 == True and ROAD_LANES == 0 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == False and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
@@ -1025,6 +1057,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_1[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_1 == True and ROAD_LANES == 1 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
                 if CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == False and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
@@ -1032,6 +1065,7 @@ def lvl1():
                     lives -= 1
                 elif CAR_RIGHT-6 <= POS_TUNNEL_1_2[0] <= CAR_RIGHT+6 and TUNNEL_LOGIC_9_2 == True and ROAD_LANES == 2 and COLLISION == False:
                     COLLISION = True
+                    gate_sound()
                     score += score_limit
 
                 # print(f'{POS_TUNNEL_1_0[0]} {CAR_RIGHT} {score}')
