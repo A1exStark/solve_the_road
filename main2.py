@@ -33,7 +33,11 @@ def lvl1_music():
     pygame.mixer.music.load('ost/lvl1.ogg')
     pygame.mixer.music.set_volume(0.2)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
-    
+
+def menu_select_sound():
+    MAIN_MENU_SELECT_SONUD.play()
+def menu_selected_sound():
+    MAIN_MENU_SELECTED_SONUD.play()
 def gate_sound():
     GATE_SOUND.play()
     
@@ -361,6 +365,7 @@ def lvl1():
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 pygame.mixer.music.stop()
+                menu_selected_sound()
                 run_lvl_1 = False
                 NEW_TIMER = 0
             if event.type == pygame.KEYDOWN:
@@ -1140,19 +1145,22 @@ while run:
         if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE and menu_main_page) or (counter == 2 and event.type == KEYDOWN and event.key == K_RETURN and menu_main_page):
             run = False
         if event.type == KEYDOWN and event.key == K_ESCAPE and menu_lvl_choose_page:
+            menu_selected_sound()
             menu_lvl_choose_page = False
             menu_main_page = True
         if event.type == KEYDOWN:
-            MAIN_MENU_SELECT_SONUD.play()
             if event.key == K_DOWN :
+                menu_select_sound()
                 counter += 1
             if event.key == K_UP:
+                menu_select_sound()
                 counter -= 1
 
         if (counter == 0 and event.type == KEYDOWN and event.key == K_RETURN and menu_main_page) or (counter == 0 and event.type == KEYDOWN and event.key == K_RETURN and menu_lvl_choose_page):
-            MAIN_MENU_SELECTED_SONUD.play()
+            menu_selected_sound()
             lvl1()
         if counter == 1 and event.type == KEYDOWN and event.key == K_RETURN:
+            menu_selected_sound()
             menu_lvl_choose_page = True
             menu_main_page = False
 
