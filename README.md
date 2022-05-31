@@ -17,3 +17,8 @@ The information will be here later
     
 **Other Stuff**
 
+BUILD
+
+***
+pyinstaller --onefile -w main2.py
+***
