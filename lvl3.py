@@ -30,6 +30,20 @@ for exercise in range(10):
     else:
         sum_fake_1 = sum_true + random.randint(-10, 10)
         sum_fake_2 = sum_true + random.randint(-10, 10)
+        
+    if sum_true == sum_fake_1 or sum_true == sum_fake_2 or sum_fake_1 == sum_fake_2:
+        # print(f'{sum_true} {sum_fake_1} {sum_fake_2}')
+
+        if sum_true == sum_fake_1:
+            sum_fake_1 += 1
+        if sum_true == sum_fake_2:
+            sum_fake_2 += 2
+        if sum_fake_1 == sum_fake_2:
+            sum_fake_1 += 1
+            sum_fake_2 -= 2
+
+        # print(f'{sum_true} {sum_fake_1} {sum_fake_2}')
+        
     # if sum_true == sum_fake_1 or sum_true
     all_exercises.append([first_sum, second_sum, sum_true, sum_fake_1, sum_fake_2])
     all_answers.append([sum_true, sum_fake_1, sum_fake_2])
