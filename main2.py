@@ -190,6 +190,7 @@ def lvl1():
     GAME_OVER_SOUND_FLAG = False
     CAR_HIT_SOUND_FLAG = False
     CAR_HIT_2_SOUND_FLAG = False
+    WIN_CONDITION = False
     pressed = pygame.key.get_pressed()
 
     all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
@@ -578,6 +579,9 @@ def lvl1():
                 acceleration += 0.5
             if (event.type == pygame.KEYDOWN and event.key == K_LEFT) or (event.type == pygame.KEYUP and event.key == K_RIGHT):
                 acceleration -= 0.5
+            if event.type == pygame.KEYDOWN and event.key == K_RETURN and WIN_CONDITION:
+                run_lvl = False
+                lvl2()
 
         if lives == 3:
             WIN.blit(HEART, POS_HEART)
@@ -1177,15 +1181,17 @@ def lvl1():
             if 73000 < NEW_TIMER:
                 if 73001 < NEW_TIMER < 73018:
                     lvl_complete_sound()
+                WIN_CONDITION = True
                 WIN.blit(MAIN_MENU_BACK, POS_BACK)
                 GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
-                POS_GAME_OVER = GAME_OVER.get_rect(
-                    center=(WIDTH//2, HEIGHT//2-100))
+                POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
                 GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-                POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                    center=(WIDTH//2, HEIGHT//2))
+                POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+                GAME_OVER_PRESS_ESC = FONT_SCORE.render(f'След уровень: ENTER', 0, WHITE)
+                POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(center=(WIDTH//2, HEIGHT//100*70))
                 WIN.blit(GAME_OVER, POS_GAME_OVER)
                 WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+                WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if lives != 0:
             SCORE_0 = FONT_SCORE.render(f'{score}', 0, WHITE)
@@ -1198,14 +1204,14 @@ def lvl1():
                 GAME_OVER_SOUND_FLAG = True
             WIN.blit(MAIN_MENU_BACK, POS_BACK)
             GAME_OVER = FONT.render(f'GAME OVER', 0, WHITE)
-            POS_GAME_OVER = GAME_OVER.get_rect(
-                center=(WIDTH//2, HEIGHT//2-100))
-            GAME_OVER.set_alpha(100)
+            POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
             GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                center=(WIDTH//2, HEIGHT//2))
+            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+            GAME_OVER_PRESS_ESC = FONT_SCORE.render(f'МЕНЮ: ESC', 0, WHITE)
+            POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(center=(WIDTH//2, HEIGHT//100*70))
             WIN.blit(GAME_OVER, POS_GAME_OVER)
             WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+            WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if game_is_on:
             pygame.display.flip()
@@ -1213,8 +1219,8 @@ def lvl1():
             NEW_TIMER = 0
 
         clock.tick(FPS)
-
-
+        
+        
 
 
 def lvl2():
@@ -1317,6 +1323,7 @@ def lvl2():
     GAME_OVER_SOUND_FLAG = False
     CAR_HIT_SOUND_FLAG = False
     CAR_HIT_2_SOUND_FLAG = False
+    WIN_CONDITION = False
     pressed = pygame.key.get_pressed()
 
     all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
@@ -1722,6 +1729,9 @@ def lvl2():
                 acceleration += 0.5
             if (event.type == pygame.KEYDOWN and event.key == K_LEFT) or (event.type == pygame.KEYUP and event.key == K_RIGHT):
                 acceleration -= 0.5
+            if event.type == pygame.KEYDOWN and event.key == K_RETURN and WIN_CONDITION:
+                run_lvl = False
+                lvl3()
 
         if lives == 3:
             WIN.blit(HEART, POS_HEART)
@@ -2321,15 +2331,17 @@ def lvl2():
             if 73000 < NEW_TIMER:
                 if 73001 < NEW_TIMER < 73018:
                     lvl_complete_sound()
+                WIN_CONDITION = True
                 WIN.blit(MAIN_MENU_BACK, POS_BACK)
                 GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
-                POS_GAME_OVER = GAME_OVER.get_rect(
-                    center=(WIDTH//2, HEIGHT//2-100))
+                POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
                 GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-                POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                    center=(WIDTH//2, HEIGHT//2))
+                POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+                GAME_OVER_PRESS_ESC = FONT_SCORE.render(f'След уровень: ENTER', 0, WHITE)
+                POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(center=(WIDTH//2, HEIGHT//100*70))
                 WIN.blit(GAME_OVER, POS_GAME_OVER)
                 WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+                WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if lives != 0:
             SCORE_0 = FONT_SCORE.render(f'{score}', 0, WHITE)
@@ -2342,14 +2354,15 @@ def lvl2():
                 GAME_OVER_SOUND_FLAG = True
             WIN.blit(MAIN_MENU_BACK, POS_BACK)
             GAME_OVER = FONT.render(f'GAME OVER', 0, WHITE)
-            POS_GAME_OVER = GAME_OVER.get_rect(
-                center=(WIDTH//2, HEIGHT//2-100))
+            POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
             GAME_OVER.set_alpha(100)
             GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                center=(WIDTH//2, HEIGHT//2))
+            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+            GAME_OVER_PRESS_ESC = FONT_SCORE.render(f'МЕНЮ: ESC', 0, WHITE)
+            POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(center=(WIDTH//2, HEIGHT//100*70))
             WIN.blit(GAME_OVER, POS_GAME_OVER)
             WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+            WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if game_is_on:
             pygame.display.flip()
@@ -2458,6 +2471,7 @@ def lvl3():
     GAME_OVER_SOUND_FLAG = False
     CAR_HIT_SOUND_FLAG = False
     CAR_HIT_2_SOUND_FLAG = False
+    WIN_CONDITION = False
     pressed = pygame.key.get_pressed()
 
     all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
@@ -2860,6 +2874,9 @@ def lvl3():
                 acceleration += 0.5
             if (event.type == pygame.KEYDOWN and event.key == K_LEFT) or (event.type == pygame.KEYUP and event.key == K_RIGHT):
                 acceleration -= 0.5
+            if event.type == pygame.KEYDOWN and event.key == K_RETURN and WIN_CONDITION:
+                run_lvl = False
+                lvl4()
 
         if lives == 3:
             WIN.blit(HEART, POS_HEART)
@@ -3459,6 +3476,7 @@ def lvl3():
             if 73000 < NEW_TIMER:
                 if 73001 < NEW_TIMER < 73018:
                     lvl_complete_sound()
+                WIN_CONDITION = True
                 WIN.blit(MAIN_MENU_BACK, POS_BACK)
                 GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
                 POS_GAME_OVER = GAME_OVER.get_rect(
@@ -3466,8 +3484,13 @@ def lvl3():
                 GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
                 POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
                     center=(WIDTH//2, HEIGHT//2))
+                GAME_OVER_PRESS_ESC = FONT_SCORE.render(
+                    f'След уровень: ENTER', 0, WHITE)
+                POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(
+                    center=(WIDTH//2, HEIGHT//100*70))
                 WIN.blit(GAME_OVER, POS_GAME_OVER)
                 WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+                WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if lives != 0:
             SCORE_0 = FONT_SCORE.render(f'{score}', 0, WHITE)
@@ -3480,14 +3503,15 @@ def lvl3():
                 GAME_OVER_SOUND_FLAG = True
             WIN.blit(MAIN_MENU_BACK, POS_BACK)
             GAME_OVER = FONT.render(f'GAME OVER', 0, WHITE)
-            POS_GAME_OVER = GAME_OVER.get_rect(
-                center=(WIDTH//2, HEIGHT//2-100))
+            POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
             GAME_OVER.set_alpha(100)
             GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                center=(WIDTH//2, HEIGHT//2))
+            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+            GAME_OVER_PRESS_ESC = FONT_SCORE.render(f'МЕНЮ: ESC', 0, WHITE)
+            POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(center=(WIDTH//2, HEIGHT//100*70))
             WIN.blit(GAME_OVER, POS_GAME_OVER)
             WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+            WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if game_is_on:
             pygame.display.flip()
@@ -3495,6 +3519,8 @@ def lvl3():
             NEW_TIMER = 0
 
         clock.tick(FPS)
+
+
 
 
 def lvl4():
@@ -3594,6 +3620,7 @@ def lvl4():
     GAME_OVER_SOUND_FLAG = False
     CAR_HIT_SOUND_FLAG = False
     CAR_HIT_2_SOUND_FLAG = False
+    WIN_CONDITION = False
     pressed = pygame.key.get_pressed()
 
     all_exercises, all_answers, all_answer_flag, all_answer_flags_last = [], [], [], []
@@ -3977,7 +4004,7 @@ def lvl4():
 
         draw_all()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+            if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and WIN_CONDITION):
                 pygame.mixer.music.stop()
                 menu_selected_sound()
                 run_lvl = False
@@ -4599,15 +4626,17 @@ def lvl4():
             if 73000 < NEW_TIMER:
                 if 73001 < NEW_TIMER < 73018:
                     lvl_complete_sound()
+                WIN_CONDITION = True
                 WIN.blit(MAIN_MENU_BACK, POS_BACK)
                 GAME_OVER = FONT.render(f'ПОБЕДА!', 0, WHITE)
-                POS_GAME_OVER = GAME_OVER.get_rect(
-                    center=(WIDTH//2, HEIGHT//2-100))
+                POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
                 GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-                POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                    center=(WIDTH//2, HEIGHT//2))
+                POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+                GAME_OVER_PRESS_ESC = FONT_SCORE.render(f'МЕНЮ: ENTER', 0, WHITE)
+                POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(center=(WIDTH//2, HEIGHT//100*70))
                 WIN.blit(GAME_OVER, POS_GAME_OVER)
                 WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+                WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if lives != 0:
             SCORE_0 = FONT_SCORE.render(f'{score}', 0, WHITE)
@@ -4620,14 +4649,15 @@ def lvl4():
                 GAME_OVER_SOUND_FLAG = True
             WIN.blit(MAIN_MENU_BACK, POS_BACK)
             GAME_OVER = FONT.render(f'GAME OVER', 0, WHITE)
-            POS_GAME_OVER = GAME_OVER.get_rect(
-                center=(WIDTH//2, HEIGHT//2-100))
+            POS_GAME_OVER = GAME_OVER.get_rect(center=(WIDTH//2, HEIGHT//2-100))
             GAME_OVER.set_alpha(100)
             GAME_OVER_SCORE = FONT.render(f'ВАШ СЧЕТ: {score}', 0, WHITE)
-            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(
-                center=(WIDTH//2, HEIGHT//2))
+            POS_GAME_OVER_SCORE = GAME_OVER_SCORE.get_rect(center=(WIDTH//2, HEIGHT//2))
+            GAME_OVER_PRESS_ESC = FONT_SCORE.render(f'МЕНЮ: ESC', 0, WHITE)
+            POS_GAME_OVER_PRESS_ESC = GAME_OVER_PRESS_ESC.get_rect(center=(WIDTH//2, HEIGHT//100*70))
             WIN.blit(GAME_OVER, POS_GAME_OVER)
             WIN.blit(GAME_OVER_SCORE, POS_GAME_OVER_SCORE)
+            WIN.blit(GAME_OVER_PRESS_ESC, POS_GAME_OVER_PRESS_ESC)
 
         if game_is_on:
             pygame.display.flip()
