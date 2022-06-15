@@ -478,14 +478,6 @@ def lvl1():
             WIN.blit(TUNNEL_EQUALS_9_2, POS_TUNNEL_EQUALS_9_2)
 
     while run_lvl:
-
-        if game_is_on:
-            current_time = pygame.time.get_ticks()
-            NEW_TIMER += 17
-        else:
-            current_time = 0
-            NEW_TIMER = 0
-        
         def reset_tunnels():
             POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
             POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
@@ -569,11 +561,9 @@ def lvl1():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
-                    lives = 3
                     # current_time = pygame.time.get_ticks()
                 if event.key == pygame.K_9:
                     game_is_on = False
-                    NEW_TIMER = 0
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -630,7 +620,7 @@ def lvl1():
         elif ROAD_LANES < 0:
             ROAD_LANES = 0
 
-        if lives != 0:
+        if lives != 0 and game_is_on:
             if 0 < NEW_TIMER < 3000:
                 COLLISION = False
 
@@ -1198,6 +1188,13 @@ def lvl1():
             POS_SCORE_0 = SCORE_0.get_rect(
                 center=(WIDTH//100*92, HEIGHT//100*99+30))
             WIN.blit(SCORE_0, POS_SCORE_0)
+        # FPS_DEBUG
+        #    FPS_DRAW_0 = FONT_FPS.render(f'NEW_TIMER: {NEW_TIMER}', 0, WHITE)
+        #    POS_FPS_DRAW_0 = FPS_DRAW_0.get_rect(center=(164, 746))
+        #    WIN.blit(FPS_DRAW_0, POS_FPS_DRAW_0)
+        #    FPS_DRAW_1 = FONT_FPS.render(f'current_time: {current_time}', 0, WHITE)
+        #    POS_FPS_DRAW_1 = FPS_DRAW_1.get_rect(center=(150, 760))
+        #    WIN.blit(FPS_DRAW_1, POS_FPS_DRAW_1)
         else:
             if GAME_OVER_SOUND_FLAG == False:
                 game_over_sound()
@@ -1215,8 +1212,13 @@ def lvl1():
 
         if game_is_on:
             pygame.display.flip()
+            current_time = pygame.time.get_ticks()
+            NEW_TIMER += 17
+            pygame.mixer.music.unpause()
         else:
-            NEW_TIMER = 0
+            current_time = current_time
+            NEW_TIMER = NEW_TIMER
+            pygame.mixer.music.pause() 
 
         clock.tick(FPS)
         

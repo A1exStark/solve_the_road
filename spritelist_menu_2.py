@@ -10,6 +10,7 @@ pygame.mouse.set_visible(False)
 
 FONT = pygame.font.Font('fonts/font3.ttf', 24)
 FONT_SCORE = pygame.font.Font('fonts/font3.ttf', 16)
+FONT_FPS = pygame.font.Font('fonts/font3.ttf', 10)
 
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
