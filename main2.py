@@ -561,7 +561,6 @@ def lvl1():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
-                    # current_time = pygame.time.get_ticks()
                 if event.key == pygame.K_9:
                     game_is_on = False
 
@@ -1621,14 +1620,6 @@ def lvl2():
         WIN.blit(PAUSE, POS_PAUSE)
 
     while run_lvl:
-
-        if game_is_on:
-            current_time = pygame.time.get_ticks()
-            NEW_TIMER += 17
-        else:
-            current_time = 0
-            NEW_TIMER = 0
-
         def reset_tunnels():
             POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
             POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
@@ -1721,11 +1712,8 @@ def lvl2():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
-                    lives = 3
-                    # current_time = pygame.time.get_ticks()
                 if event.key == pygame.K_9:
                     game_is_on = False
-                    NEW_TIMER = 0
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -1782,7 +1770,7 @@ def lvl2():
         elif ROAD_LANES < 0:
             ROAD_LANES = 0
 
-        if lives != 0:
+        if lives != 0 and game_is_on:
             if 0 < NEW_TIMER < 3000:
                 COLLISION = False
 
@@ -2368,8 +2356,13 @@ def lvl2():
 
         if game_is_on:
             pygame.display.flip()
+            current_time = pygame.time.get_ticks()
+            NEW_TIMER += 17
+            pygame.mixer.music.unpause()
         else:
-            NEW_TIMER = 0
+            current_time = current_time
+            NEW_TIMER = NEW_TIMER
+            pygame.mixer.music.pause()
 
         clock.tick(FPS)
 
@@ -2766,14 +2759,6 @@ def lvl3():
         WIN.blit(PAUSE, POS_PAUSE)
 
     while run_lvl:
-
-        if game_is_on:
-            current_time = pygame.time.get_ticks()
-            NEW_TIMER += 17
-        else:
-            current_time = 0
-            NEW_TIMER = 0
-
         def reset_tunnels():
             POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
             POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
@@ -2866,11 +2851,8 @@ def lvl3():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
-                    lives = 3
-                    # current_time = pygame.time.get_ticks()
                 if event.key == pygame.K_9:
                     game_is_on = False
-                    NEW_TIMER = 0
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -2927,7 +2909,7 @@ def lvl3():
         elif ROAD_LANES < 0:
             ROAD_LANES = 0
 
-        if lives != 0:
+        if lives != 0 and game_is_on:
             if 0 < NEW_TIMER < 3000:
                 COLLISION = False
 
@@ -3517,8 +3499,13 @@ def lvl3():
 
         if game_is_on:
             pygame.display.flip()
+            current_time = pygame.time.get_ticks()
+            NEW_TIMER += 17
+            pygame.mixer.music.unpause()
         else:
-            NEW_TIMER = 0
+            current_time = current_time
+            NEW_TIMER = NEW_TIMER
+            pygame.mixer.music.pause()
 
         clock.tick(FPS)
 
@@ -3919,14 +3906,6 @@ def lvl4():
         WIN.blit(PAUSE, POS_PAUSE)
 
     while run_lvl:
-
-        if game_is_on:
-            current_time = pygame.time.get_ticks()
-            NEW_TIMER += 17
-        else:
-            current_time = 0
-            NEW_TIMER = 0
-
         def reset_tunnels():
             POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
             POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
@@ -4019,11 +3998,8 @@ def lvl4():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
-                    lives = 3
-                    # current_time = pygame.time.get_ticks()
                 if event.key == pygame.K_9:
                     game_is_on = False
-                    NEW_TIMER = 0
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -4077,7 +4053,7 @@ def lvl4():
         elif ROAD_LANES < 0:
             ROAD_LANES = 0
 
-        if lives != 0:
+        if lives != 0 and game_is_on:
             if 0 < NEW_TIMER < 3000:
                 COLLISION = False
 
@@ -4663,8 +4639,13 @@ def lvl4():
 
         if game_is_on:
             pygame.display.flip()
+            current_time = pygame.time.get_ticks()
+            NEW_TIMER += 17
+            pygame.mixer.music.unpause()
         else:
-            NEW_TIMER = 0
+            current_time = current_time
+            NEW_TIMER = NEW_TIMER
+            pygame.mixer.music.pause()
 
         clock.tick(FPS)
 
