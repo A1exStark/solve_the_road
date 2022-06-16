@@ -93,14 +93,27 @@ def lvl1():
     lvl1_music()
     
     BG = pygame.image.load('img/lvl1/bg.jpg')
-
     POS_BG = BG.get_rect(center=(WIDTH//2, HEIGHT//2))
 
+    LEFT_CLOUD = pygame.image.load('img/lvl1/left_cloud.png').convert_alpha()
+    POS_LEFT_CLOUD = LEFT_CLOUD.get_rect(center=(WIDTH//2+68, HEIGHT//2))
+    
     MOUNTAINS = pygame.image.load('img/lvl1/mountains.png').convert_alpha()
     POS_MOUNTAINS = MOUNTAINS.get_rect(center=(WIDTH//2, HEIGHT//2))
-    FOREST = pygame.image.load('img/lvl1/forest.png').convert_alpha()
-    POS_FOREST = FOREST.get_rect(center=(WIDTH//2, HEIGHT//2))
-
+    
+    MOUNTAIN_RIGHT = pygame.image.load('img/lvl1/right_mountain.png').convert_alpha()
+    POS_MOUNTAIN_RIGHT = MOUNTAIN_RIGHT.get_rect(center=(WIDTH//2+34, HEIGHT//2))
+    MOUNTAIN_LEFT = pygame.image.load('img/lvl1/left_mountain.png').convert_alpha()
+    POS_MOUNTAIN_LEFT = MOUNTAIN_LEFT.get_rect(center=(WIDTH//2+34, HEIGHT//2))
+    
+    RIGHT_CLOUD = pygame.image.load('img/lvl1/right_cloud.png').convert_alpha()
+    POS_RIGHT_CLOUD = RIGHT_CLOUD.get_rect(center=(WIDTH//2+272, HEIGHT//2))
+    
+    FOREST_LEFT = pygame.image.load('img/lvl1/left_forest.png').convert_alpha()
+    POS_FOREST_LEFT = FOREST_LEFT.get_rect(center=(WIDTH//2, HEIGHT//2))
+    FOREST_RIGHT = pygame.image.load('img/lvl1/right_forest.png').convert_alpha()
+    POS_FOREST_RIGHT = FOREST_RIGHT.get_rect(center=(WIDTH//2+34, HEIGHT//2))
+    
     ROAD = pygame.image.load('img/lvl1/road.png').convert_alpha()
     
     CAR = pygame.image.load('img/lvl1/car.png').convert_alpha()
@@ -175,6 +188,12 @@ def lvl1():
     run_lvl = True
     clock = pygame.time.Clock()
     i = 0
+    i1 = 0
+    i2 = 0
+    i3 = 0
+    i4 = 0
+    i5 = 0
+    i6 = 0
     exercises = 10
     FPS = 60
     NEW_TIMER = 0
@@ -399,8 +418,13 @@ def lvl1():
     def draw_all():
         if lives != 0:
             WIN.blit(BG, POS_BG)
+            WIN.blit(LEFT_CLOUD, (POS_LEFT_CLOUD[0]+i1, 0))
             WIN.blit(MOUNTAINS, POS_MOUNTAINS)
-            WIN.blit(FOREST, POS_FOREST)
+            WIN.blit(MOUNTAIN_RIGHT, (POS_MOUNTAIN_RIGHT[0]+i2, 0))
+            WIN.blit(MOUNTAIN_LEFT, (POS_MOUNTAIN_LEFT[0]+i3, 0))
+            WIN.blit(RIGHT_CLOUD, (POS_RIGHT_CLOUD[0]+i4, 0))
+            WIN.blit(FOREST_LEFT, (POS_FOREST_LEFT[0]+i5, 0))
+            WIN.blit(FOREST_RIGHT, (POS_FOREST_RIGHT[0]+i6, 0))
             WIN.blit(ROAD, (i, 0))
             WIN.blit(ROAD, (WIDTH+i, 0))
             # WIN.blit(ROAD, POS_ROAD)
@@ -480,6 +504,34 @@ def lvl1():
             WIN.blit(TUNNEL_EQUALS_9_2, POS_TUNNEL_EQUALS_9_2)
 
     while run_lvl:
+        if i1 <= 0 and i2 <= 0 and i3 <= 0 and i4 <= 0 and i5 <= 0 and i6 <= 0:
+            WIN.blit(LEFT_CLOUD, (i1, 0))
+            WIN.blit(MOUNTAIN_RIGHT, (i2, 0))
+            WIN.blit(MOUNTAIN_LEFT, (i3, 0))
+            WIN.blit(RIGHT_CLOUD, (i4, 0))
+            WIN.blit(FOREST_LEFT, (i5, 0))
+            WIN.blit(FOREST_RIGHT, (i6, 0))
+            i1 = 0
+            i2 = 0
+            i3 = 0
+            i4 = 0
+            i5 = 0
+            i6 = 0
+        if game_is_paused or GAME_OVER_SOUND_FLAG:
+            i1 = i1
+            i2 = i2
+            i3 = i3
+            i4 = i4
+            i5 = i5
+            i6 = i6
+        else:
+            i1 -= NEW_TIMER/1100
+            i2 -= NEW_TIMER/2200
+            i3 -= NEW_TIMER/2200
+            i4 -= NEW_TIMER/300
+            i5 -= NEW_TIMER/1200
+            i6 -= NEW_TIMER/2200
+            
         def reset_tunnels():
             POS_TUNNEL_0_0[0] = ST_OFFSET_TUNNEL_0+33
             POS_TUNNEL_0_1[0] = ST_OFFSET_TUNNEL_0+33
@@ -570,7 +622,7 @@ def lvl1():
             elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
                 game_is_on = True
                 game_is_paused = False
-            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_ESCAPE and GAME_OVER_SOUND_FLAG):
                 pygame.mixer.music.stop()
                 menu_selected_sound()
                 main_menu_music()
@@ -602,6 +654,8 @@ def lvl1():
         elif lives == 1:
             WIN.blit(HEART, POS_HEART)
 
+        
+
         if i <= -WIDTH:
             WIN.blit(ROAD, (i+WIDTH, 0))
             i = 0
@@ -609,6 +663,8 @@ def lvl1():
             i = i
         else:
             i -= speed*acceleration
+            
+        
 
         if ROAD_LANES == 0:
             POS_CAR[1] = HEIGHT//100*40
@@ -1211,12 +1267,12 @@ def lvl1():
                 center=(WIDTH//100*92, HEIGHT//100*99+30))
             WIN.blit(SCORE_0, POS_SCORE_0)
         # FPS_DEBUG
-        #    FPS_DRAW_0 = FONT_FPS.render(f'NEW_TIMER: {pygame.mouse.get_pos()}', 0, WHITE)
-        #    POS_FPS_DRAW_0 = FPS_DRAW_0.get_rect(center=(164, 746))
-        #    WIN.blit(FPS_DRAW_0, POS_FPS_DRAW_0)
-        #    FPS_DRAW_1 = FONT_FPS.render(f'current_time: {current_time}', 0, WHITE)
-        #    POS_FPS_DRAW_1 = FPS_DRAW_1.get_rect(center=(150, 760))
-        #    WIN.blit(FPS_DRAW_1, POS_FPS_DRAW_1)
+            FPS_DRAW_0 = FONT_FPS.render(f'i1: {i1}', 0, WHITE)
+            POS_FPS_DRAW_0 = FPS_DRAW_0.get_rect(center=(164, 746))
+            WIN.blit(FPS_DRAW_0, POS_FPS_DRAW_0)
+            FPS_DRAW_1 = FONT_FPS.render(f'NEW_TIMER: {NEW_TIMER}', 0, WHITE)
+            POS_FPS_DRAW_1 = FPS_DRAW_1.get_rect(center=(150, 760))
+            WIN.blit(FPS_DRAW_1, POS_FPS_DRAW_1)
         else:
             if GAME_OVER_SOUND_FLAG == False:
                 game_over_sound()
@@ -1754,7 +1810,7 @@ def lvl2():
             elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
                 game_is_on = True
                 game_is_paused = False
-            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_ESCAPE and GAME_OVER_SOUND_FLAG):
                 pygame.mixer.music.stop()
                 menu_selected_sound()
                 main_menu_music()
@@ -2926,7 +2982,7 @@ def lvl3():
             elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
                 game_is_on = True
                 game_is_paused = False
-            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_ESCAPE and GAME_OVER_SOUND_FLAG):
                 pygame.mixer.music.stop()
                 menu_selected_sound()
                 main_menu_music()
@@ -4106,7 +4162,7 @@ def lvl4():
             elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
                 game_is_on = True
                 game_is_paused = False
-            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_ESCAPE and GAME_OVER_SOUND_FLAG):
                 pygame.mixer.music.stop()
                 menu_selected_sound()
                 main_menu_music()
