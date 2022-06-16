@@ -5,7 +5,7 @@ pygame.init()
 
 WIDTH, HEIGHT = 1024, 768
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.mouse.set_visible(False)
+# pygame.mouse.set_visible(False)
 
 
 FONT = pygame.font.Font('fonts/font3.ttf', 24)
@@ -68,6 +68,9 @@ MAIN_MENU_SPRITE = pyganim.PygAnimation([
 MAIN_MENU_BACK = pygame.image.load('img/main_menu.png').convert_alpha()
 POS_BACK = MAIN_MENU_BACK.get_rect(center=(WIDTH//2, HEIGHT//10*5))
 MAIN_MENU_BACK.set_alpha(100)
+PAUSE_BACK = pygame.transform.scale(pygame.image.load('img/main_menu.png'), [330,340]).convert_alpha()
+POS_PAUSE_BACK = PAUSE_BACK.get_rect(center=(WIDTH//2, HEIGHT//10*5))
+PAUSE_BACK.set_alpha(100)
 
 RECT_X_1 = 280
 RECT_X_2 = 280

@@ -4,6 +4,7 @@ import random
 import math
 from spritelist_menu_2 import *
 from osts import *
+import sys
 
 pygame.display.set_caption('MATH RIDER')
 
@@ -55,35 +56,35 @@ def game_over_sound():
 def main_menu_music():
     pygame.mixer.music.stop()
     pygame.mixer.music.load('ost/main_menu.ogg')
-    pygame.mixer.music.set_volume(0.2)
+    pygame.mixer.music.set_volume(MUTE*0.2)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
 
 def lvl1_music():
     pygame.mixer.music.stop()
     lvl_start_sound()
     pygame.mixer.music.load('ost/lvl1.ogg')
-    pygame.mixer.music.set_volume(0.18)
+    pygame.mixer.music.set_volume(MUTE*0.18)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
 
 def lvl2_music():
     pygame.mixer.music.stop()
     lvl_start_sound()
     pygame.mixer.music.load('ost/lvl2.ogg')
-    pygame.mixer.music.set_volume(0.15)
+    pygame.mixer.music.set_volume(MUTE*0.15)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
     
 def lvl3_music():
     pygame.mixer.music.stop()
     lvl_start_sound()
     pygame.mixer.music.load('ost/lvl3.ogg')
-    pygame.mixer.music.set_volume(0.18)
+    pygame.mixer.music.set_volume(MUTE*0.18)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300) 
 
 def lvl4_music():
     pygame.mixer.music.stop()
     lvl_start_sound()
     pygame.mixer.music.load('ost/lvl4.ogg')
-    pygame.mixer.music.set_volume(0.15)
+    pygame.mixer.music.set_volume(MUTE*0.15)
     pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=300)
     
 
@@ -183,7 +184,8 @@ def lvl1():
     score_limit = 1
     COLLISION = False
     COLLISION_PAUSE = 1000
-    game_is_on = True  
+    game_is_on = True
+    game_is_paused = False
     current_time = 0
     speed = 8
     acceleration = 1.0
@@ -548,12 +550,8 @@ def lvl1():
 
         draw_all()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-                pygame.mixer.music.stop()                
-                menu_selected_sound()
-                run_lvl = False
-                NEW_TIMER = 0
-                main_menu_music()
+            if event.type == pygame.QUIT:
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     ROAD_LANES += 1
@@ -561,8 +559,30 @@ def lvl1():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
+                    game_is_paused = False
                 if event.key == pygame.K_9:
                     game_is_on = False
+                    game_is_paused = True
+                
+            if event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused == False:
+                game_is_on = False
+                game_is_paused = True
+            elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
+                game_is_on = True
+                game_is_paused = False
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+                pygame.mixer.music.stop()
+                menu_selected_sound()
+                main_menu_music()
+                run_lvl = False
+                NEW_TIMER = 0
+                main_menu_music()
+                
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and game_is_paused == False:
+                MOUSE_POS = pygame.mouse.get_pos()
+                if POS_PAUSE.collidepoint(MOUSE_POS):
+                    game_is_on = False
+                    game_is_paused = True
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -585,7 +605,10 @@ def lvl1():
         if i <= -WIDTH:
             WIN.blit(ROAD, (i+WIDTH, 0))
             i = 0
-        i -= speed*acceleration
+        if game_is_paused:
+            i = i
+        else:
+            i -= speed*acceleration
 
         if ROAD_LANES == 0:
             POS_CAR[1] = HEIGHT//100*40
@@ -1188,7 +1211,7 @@ def lvl1():
                 center=(WIDTH//100*92, HEIGHT//100*99+30))
             WIN.blit(SCORE_0, POS_SCORE_0)
         # FPS_DEBUG
-        #    FPS_DRAW_0 = FONT_FPS.render(f'NEW_TIMER: {NEW_TIMER}', 0, WHITE)
+        #    FPS_DRAW_0 = FONT_FPS.render(f'NEW_TIMER: {pygame.mouse.get_pos()}', 0, WHITE)
         #    POS_FPS_DRAW_0 = FPS_DRAW_0.get_rect(center=(164, 746))
         #    WIN.blit(FPS_DRAW_0, POS_FPS_DRAW_0)
         #    FPS_DRAW_1 = FONT_FPS.render(f'current_time: {current_time}', 0, WHITE)
@@ -1215,9 +1238,20 @@ def lvl1():
             NEW_TIMER += 17
             pygame.mixer.music.unpause()
         else:
+            WIN.blit(PAUSE_BACK, POS_PAUSE_BACK)
+            PAUSE_MENU = FONT_SCORE.render(f'PAUSE', 0, WHITE)
+            POS_PAUSE_MENU = PAUSE_MENU.get_rect(center=(WIDTH//2, HEIGHT//2-100))
+            PAUSE_ESC = FONT_SCORE.render(f'BACK: ESC', 0, WHITE)
+            POS_PAUSE_ESC = PAUSE_ESC.get_rect(center=(WIDTH//2, HEIGHT//2))
+            PAUSE_ENTER = FONT_SCORE.render(f'МЕНЮ: ENTER', 0, WHITE)
+            POS_PAUSE_ENTER = PAUSE_ENTER.get_rect(center=(WIDTH//2, HEIGHT//100*70))
+            WIN.blit(PAUSE_MENU, POS_PAUSE_MENU)
+            WIN.blit(PAUSE_ESC, POS_PAUSE_ESC)
+            WIN.blit(PAUSE_ENTER, POS_PAUSE_ENTER)
+            pygame.display.update()
             current_time = current_time
             NEW_TIMER = NEW_TIMER
-            pygame.mixer.music.pause() 
+            pygame.mixer.music.pause()
 
         clock.tick(FPS)
         
@@ -1318,6 +1352,7 @@ def lvl2():
     COLLISION = False
     COLLISION_PAUSE = 1000
     game_is_on = True
+    game_is_paused = False
     current_time = 0
     speed = 8
     acceleration = 1.0
@@ -1699,12 +1734,8 @@ def lvl2():
 
         draw_all()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-                pygame.mixer.music.stop()
-                menu_selected_sound()
-                run_lvl = False
-                NEW_TIMER = 0
-                main_menu_music()
+            if event.type == pygame.QUIT:
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     ROAD_LANES += 1
@@ -1712,8 +1743,30 @@ def lvl2():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
+                    game_is_paused = False
                 if event.key == pygame.K_9:
                     game_is_on = False
+                    game_is_paused = True
+
+            if event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused == False:
+                game_is_on = False
+                game_is_paused = True
+            elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
+                game_is_on = True
+                game_is_paused = False
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+                pygame.mixer.music.stop()
+                menu_selected_sound()
+                main_menu_music()
+                run_lvl = False
+                NEW_TIMER = 0
+                main_menu_music()
+
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and game_is_paused == False:
+                MOUSE_POS = pygame.mouse.get_pos()
+                if POS_PAUSE.collidepoint(MOUSE_POS):
+                    game_is_on = False
+                    game_is_paused = True
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -1736,8 +1789,11 @@ def lvl2():
         if i <= -WIDTH:
             WIN.blit(ROAD, (i+WIDTH, 0))
             i = 0
-        i -= speed*acceleration
-
+        if game_is_paused:
+            i = i
+        else:
+            i -= speed*acceleration
+            
         if ROAD_LANES == 0:
             POS_CAR[1] = HEIGHT//100*43
             POS_CAR_W[1] = HEIGHT//100*43
@@ -2360,6 +2416,17 @@ def lvl2():
             NEW_TIMER += 17
             pygame.mixer.music.unpause()
         else:
+            WIN.blit(PAUSE_BACK, POS_PAUSE_BACK)
+            PAUSE_MENU = FONT_SCORE.render(f'PAUSE', 0, WHITE)
+            POS_PAUSE_MENU = PAUSE_MENU.get_rect(center=(WIDTH//2, HEIGHT//2-100))
+            PAUSE_ESC = FONT_SCORE.render(f'BACK: ESC', 0, WHITE)
+            POS_PAUSE_ESC = PAUSE_ESC.get_rect(center=(WIDTH//2, HEIGHT//2))
+            PAUSE_ENTER = FONT_SCORE.render(f'МЕНЮ: ENTER', 0, WHITE)
+            POS_PAUSE_ENTER = PAUSE_ENTER.get_rect(center=(WIDTH//2, HEIGHT//100*70))
+            WIN.blit(PAUSE_MENU, POS_PAUSE_MENU)
+            WIN.blit(PAUSE_ESC, POS_PAUSE_ESC)
+            WIN.blit(PAUSE_ENTER, POS_PAUSE_ENTER)
+            pygame.display.update()
             current_time = current_time
             NEW_TIMER = NEW_TIMER
             pygame.mixer.music.pause()
@@ -2460,6 +2527,7 @@ def lvl3():
     COLLISION = False
     COLLISION_PAUSE = 1000
     game_is_on = True
+    game_is_paused = False
     current_time = 0
     speed = 8
     acceleration = 1.0
@@ -2838,12 +2906,8 @@ def lvl3():
 
         draw_all()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-                pygame.mixer.music.stop()
-                menu_selected_sound()
-                run_lvl = False
-                NEW_TIMER = 0
-                main_menu_music()
+            if event.type == pygame.QUIT:
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     ROAD_LANES += 1
@@ -2851,8 +2915,30 @@ def lvl3():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
+                    game_is_paused = False
                 if event.key == pygame.K_9:
                     game_is_on = False
+                    game_is_paused = True
+
+            if event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused == False:
+                game_is_on = False
+                game_is_paused = True
+            elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
+                game_is_on = True
+                game_is_paused = False
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+                pygame.mixer.music.stop()
+                menu_selected_sound()
+                main_menu_music()
+                run_lvl = False
+                NEW_TIMER = 0
+                main_menu_music()
+
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and game_is_paused == False:
+                MOUSE_POS = pygame.mouse.get_pos()
+                if POS_PAUSE.collidepoint(MOUSE_POS):
+                    game_is_on = False
+                    game_is_paused = True
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -2875,7 +2961,10 @@ def lvl3():
         if i <= -WIDTH:
             WIN.blit(ROAD, (i+WIDTH, 0))
             i = 0
-        i -= speed*acceleration
+        if game_is_paused:
+            i = i
+        else:
+            i -= speed*acceleration
 
         if ROAD_LANES == 0:
             POS_CAR[1] = HEIGHT//100*37
@@ -3503,6 +3592,17 @@ def lvl3():
             NEW_TIMER += 17
             pygame.mixer.music.unpause()
         else:
+            WIN.blit(PAUSE_BACK, POS_PAUSE_BACK)
+            PAUSE_MENU = FONT_SCORE.render(f'PAUSE', 0, WHITE)
+            POS_PAUSE_MENU = PAUSE_MENU.get_rect(center=(WIDTH//2, HEIGHT//2-100))
+            PAUSE_ESC = FONT_SCORE.render(f'BACK: ESC', 0, WHITE)
+            POS_PAUSE_ESC = PAUSE_ESC.get_rect(center=(WIDTH//2, HEIGHT//2))
+            PAUSE_ENTER = FONT_SCORE.render(f'МЕНЮ: ENTER', 0, WHITE)
+            POS_PAUSE_ENTER = PAUSE_ENTER.get_rect(center=(WIDTH//2, HEIGHT//100*70))
+            WIN.blit(PAUSE_MENU, POS_PAUSE_MENU)
+            WIN.blit(PAUSE_ESC, POS_PAUSE_ESC)
+            WIN.blit(PAUSE_ENTER, POS_PAUSE_ENTER)
+            pygame.display.update()
             current_time = current_time
             NEW_TIMER = NEW_TIMER
             pygame.mixer.music.pause()
@@ -3603,6 +3703,7 @@ def lvl4():
     COLLISION = False
     COLLISION_PAUSE = 1000
     game_is_on = True
+    game_is_paused = False
     current_time = 0
     speed = 8
     acceleration = 1.0
@@ -3985,12 +4086,8 @@ def lvl4():
 
         draw_all()
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and WIN_CONDITION):
-                pygame.mixer.music.stop()
-                menu_selected_sound()
-                run_lvl = False
-                NEW_TIMER = 0
-                main_menu_music()
+            if event.type == pygame.QUIT:
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     ROAD_LANES += 1
@@ -3998,8 +4095,30 @@ def lvl4():
                     ROAD_LANES -= 1
                 if event.key == pygame.K_0:
                     game_is_on = True
+                    game_is_paused = False
                 if event.key == pygame.K_9:
                     game_is_on = False
+                    game_is_paused = True
+
+            if event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused == False:
+                game_is_on = False
+                game_is_paused = True
+            elif event.type == pygame.KEYDOWN and event.key == K_ESCAPE and game_is_paused:
+                game_is_on = True
+                game_is_paused = False
+            if (event.type == pygame.KEYDOWN and event.key == K_RETURN and game_is_paused) or (event.type == pygame.KEYDOWN and event.key == K_RETURN and GAME_OVER_SOUND_FLAG):
+                pygame.mixer.music.stop()
+                menu_selected_sound()
+                main_menu_music()
+                run_lvl = False
+                NEW_TIMER = 0
+                main_menu_music()
+
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and game_is_paused == False:
+                MOUSE_POS = pygame.mouse.get_pos()
+                if POS_PAUSE.collidepoint(MOUSE_POS):
+                    game_is_on = False
+                    game_is_paused = True
 
             if (event.type == pygame.KEYDOWN and event.key == K_RIGHT) or (event.type == pygame.KEYUP and event.key == K_LEFT):
                 acceleration += 0.5
@@ -4019,7 +4138,10 @@ def lvl4():
         if i <= -WIDTH:
             WIN.blit(ROAD, (i+WIDTH, 0))
             i = 0
-        i -= speed*acceleration
+        if game_is_paused:
+            i = i
+        else:
+            i -= speed*acceleration
 
         if ROAD_LANES == 0:
             POS_CAR[1] = HEIGHT//100*37
@@ -4643,6 +4765,17 @@ def lvl4():
             NEW_TIMER += 17
             pygame.mixer.music.unpause()
         else:
+            WIN.blit(PAUSE_BACK, POS_PAUSE_BACK)
+            PAUSE_MENU = FONT_SCORE.render(f'PAUSE', 0, WHITE)
+            POS_PAUSE_MENU = PAUSE_MENU.get_rect(center=(WIDTH//2, HEIGHT//2-100))
+            PAUSE_ESC = FONT_SCORE.render(f'BACK: ESC', 0, WHITE)
+            POS_PAUSE_ESC = PAUSE_ESC.get_rect(center=(WIDTH//2, HEIGHT//2))
+            PAUSE_ENTER = FONT_SCORE.render(f'МЕНЮ: ENTER', 0, WHITE)
+            POS_PAUSE_ENTER = PAUSE_ENTER.get_rect(center=(WIDTH//2, HEIGHT//100*70))
+            WIN.blit(PAUSE_MENU, POS_PAUSE_MENU)
+            WIN.blit(PAUSE_ESC, POS_PAUSE_ESC)
+            WIN.blit(PAUSE_ENTER, POS_PAUSE_ENTER)
+            pygame.display.update()
             current_time = current_time
             NEW_TIMER = NEW_TIMER
             pygame.mixer.music.pause()
